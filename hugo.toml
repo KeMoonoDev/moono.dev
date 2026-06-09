@@ -1,6 +1,6 @@
 baseURL = 'https://moono.lol/'
 locale = 'en-us'
-title = "I'm Moono!"
+title = "Moono"
 theme = 'ananke'
 sectionPagesMenu = 'main'
 mainSections = ["projects"]
