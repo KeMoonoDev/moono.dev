@@ -1,11 +1,10 @@
-baseURL = 'https://www.zanspace.lol/'
+baseURL = 'https://moono.lol/'
 locale = 'en-us'
-title = 'Zanspace'
+title = "I'm Moono!"
 theme = 'ananke'
 sectionPagesMenu = 'main'
 mainSections = ["projects"]
 
 [caches]
-  [caches.images]
-    dir = ':cacheDir/images'
-    
+[caches.images]
+dir = ':cacheDir/images'

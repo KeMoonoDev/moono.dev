@@ -1,6 +1,6 @@
 # Introduction
 
-Hello my name is Kevin and online I'm known as Zan.
+Hello! My name is Kevin, and online I'm known as Moono.
 
 # Projects
 
