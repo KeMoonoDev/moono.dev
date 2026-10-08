@@ -1,11 +1,10 @@
 ---
-import astroLogo from "../assets/astro.svg";
 import cloud_layer_1 from "../assets/cloud_layer_1.webp";
 import cloud_layer_2 from "../assets/cloud_layer_2.webp";
 import cloud_layer_3 from "../assets/cloud_layer_3.webp";
 ---
 
-<div id="container">
+<div transition:persist="clouds-background">
     <div id="sky" class="background"></div>
     <div id="bg_layer_3" class="background"></div>
     <div id="bg_layer_2" class="background"></div>
@@ -61,14 +60,19 @@ import cloud_layer_3 from "../assets/cloud_layer_3.webp";
 </style>
 
 <script>
-    document.addEventListener("scroll", function (wa) {
+    document.addEventListener("scroll", function () {
         let scroll_amount = window.pageYOffset / window.innerWidth;
-        console.log(scroll_amount);
-        document.getElementById("bg_layer_1").style.backgroundPositionY =
-            `-${scroll_amount * 120}px`;
-        document.getElementById("bg_layer_2").style.backgroundPositionY =
-            `-${scroll_amount * 60}px`;
-        let layer1 = document.getElementById("bg_layer_3");
-        layer1.style.backgroundPositionY = `-${scroll_amount * 30}px`;
+
+        let layer1 = document.getElementById("bg_layer_1");
+        if (layer1)
+            layer1.style.backgroundPositionY = `-${scroll_amount * 120}px`;
+
+        let layer2 = document.getElementById("bg_layer_2");
+        if (layer2)
+            layer2.style.backgroundPositionY = `-${scroll_amount * 60}px`;
+
+        let layer3 = document.getElementById("bg_layer_3");
+        if (layer3)
+            layer3.style.backgroundPositionY = `-${scroll_amount * 30}px`;
     });
 </script>

@@ -1,0 +1,31 @@
+---
+import NavItem from "./NavItem.astro";
+---
+
+<nav>
+    <div class="nav_items">
+        <NavItem href="/">Home</NavItem>
+        <NavItem href="/about">About</NavItem>
+        <NavItem href="/ball_in_a_box">Ball in a box</NavItem>
+    </div>
+</nav>
+
+<style>
+    nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav_items {
+        padding: 10px;
+        background-color: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+</style>

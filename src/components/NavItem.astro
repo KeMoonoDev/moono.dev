@@ -1,0 +1,20 @@
+---
+const currentPath = Astro.url.pathname;
+const { href } = Astro.props;
+console.log(currentPath);
+console.log(href);
+---
+
+<a href={href} class=`${ currentPath == href ? "disabled" : "" }`><slot /></a>
+
+<style>
+    a.disabled {
+        color: green;
+        pointer-events: none;
+        cursor: default;
+    }
+
+    a {
+        padding: 10px;
+    }
+</style>
