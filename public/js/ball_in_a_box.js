@@ -84,7 +84,7 @@ function start_ball_in_a_box() {
     canvas.tabIndex = '1';
     container.prepend(canvas);
 
-    load("ball_in_a_box.wasm", canvas)
+    load("/ball_in_a_box.wasm", canvas)
 }
 
 function stop_ball_in_a_box() {
