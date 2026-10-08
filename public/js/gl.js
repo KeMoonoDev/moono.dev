@@ -1375,6 +1375,8 @@ var importObject = {
             var file_id = FS.unique_id;
             FS.unique_id += 1;
             var xhr = new XMLHttpRequest();
+            if (!url.startsWith("/"))
+                url = `/${url}`
             xhr.open('GET', url, true);
             xhr.responseType = 'arraybuffer';
 
