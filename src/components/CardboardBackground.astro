@@ -1,0 +1,35 @@
+---
+import cardboard_background from "../assets/cardboard.png";
+import cardboard_background_darkened from "../assets/cloud_layer_1.webp";
+---
+
+<div id="cardboard-background" transition:persist="cardboard-background"></div>
+
+<style
+    define:vars={{
+        cardboard_url: `url("${cardboard_background.src}")`,
+        cardboard_darkened_url: `url("${cardboard_background_darkened.src}")`,
+    }}
+>
+    #cardboard-background {
+        background-image: var(--cardboard_url);
+        background-repeat: repeat;
+        background-size: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+</style>
+
+<script>
+    document.addEventListener("scroll", function () {
+        let scroll_amount = window.pageYOffset;
+
+        let background = document.getElementById("cardboard-background");
+        if (background)
+            background.style.backgroundPositionY = `-${scroll_amount}px`;
+    });
+</script>

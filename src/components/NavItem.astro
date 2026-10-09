@@ -1,11 +1,14 @@
 ---
-const currentPath = Astro.url.pathname;
+const tempPath = Astro.url.pathname;
 const { href } = Astro.props;
-console.log(currentPath);
-console.log(href);
+// In dev builds, there are no trailing slashes, but in prod builds, there are.
+// Fixes this by removing all trailing slashes, unless the path is just the slash.
+const modifiedPath = tempPath == "/" ? "/" : tempPath.replace(/\/+$/, "");
+const modifiedHref = href == "/" ? "/" : href.replace(/\/+$/, "");
+const isMatch = modifiedPath == modifiedHref;
 ---
 
-<a href={href} class=`${ currentPath == href ? "disabled" : "" }`><slot /></a>
+<a href={href} class=`${ isMatch ? "disabled" : "" }`><slot /></a>
 
 <style>
     a.disabled {

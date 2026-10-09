@@ -1,13 +1,16 @@
 ---
 import Welcome from "../components/Welcome.astro";
-import Layout2 from "../layouts/Layout2.astro";
+import Layout from "../layouts/Layout.astro";
 import Test from "../components/Test.astro";
+import ContentCard from "../components/ContentCard.astro";
 ---
 
-<Layout2 title="Ball in a Box">
-	<h1>Ball in a Box</h1>
-	<p>Welcome to my WIP website! Not much to see here currently...</p>
+<Layout title="Ball in a Box">
+	<ContentCard>
+		<h1>Ball in a Box</h1>
+		<p>Welcome to my WIP website! Not much to see here currently...</p>
 
-	<button onclick="start_ball_in_a_box()">start game</button>
-	<button onclick="stop_ball_in_a_box()">close game</button>
-</Layout2>
+		<button onclick="start_ball_in_a_box()">start game</button>
+		<button onclick="stop_ball_in_a_box()">close game</button>
+	</ContentCard>
+</Layout>

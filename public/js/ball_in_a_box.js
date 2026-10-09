@@ -35,8 +35,8 @@ let cursor_x = 0;
 let cursor_y = 0;
 
 document.addEventListener("mousemove", function (event) {
-    cursor_x = event.pageX;
-    cursor_y = event.pageY;
+    cursor_x = event.clientX;
+    cursor_y = event.clientY;
 });
 
 function get_cursor_position_x() {

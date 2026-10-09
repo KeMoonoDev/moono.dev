@@ -2,7 +2,7 @@
 import NavItem from "./NavItem.astro";
 ---
 
-<nav>
+<nav transition:name="nav-bar" transition:animate="fade">
     <div class="nav_items">
         <NavItem href="/">Home</NavItem>
         <NavItem href="/about">About</NavItem>
@@ -16,7 +16,6 @@ import NavItem from "./NavItem.astro";
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 1;
         display: flex;
         align-items: center;
         justify-content: center;
