@@ -1,0 +1,15 @@
+---
+import CardboardBackground from "../components/CardboardBackground.astro";
+import NavBarCardboard from "../components/NavBarCardboard.astro";
+import Layout from "./Layout.astro";
+---
+
+<Layout>
+    <slot />
+    <div slot="background">
+        <CardboardBackground />
+    </div>
+    <div slot="nav-bar">
+        <NavBarCardboard />
+    </div>
+</Layout>

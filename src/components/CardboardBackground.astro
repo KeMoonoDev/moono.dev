@@ -1,35 +1,49 @@
 ---
-import cardboard_background from "../assets/cardboard.png";
-import cardboard_background_darkened from "../assets/cloud_layer_1.webp";
+import cardboard_background_darkened from "../assets/cardboard_darkened.png";
 ---
 
-<div id="cardboard-background" transition:persist="cardboard-background"></div>
+<div
+    id="cardboard-background"
+    data-vtbot-replace="cardboard-background"
+    transition:persist="cardboard-background"
+>
+</div>
 
 <style
     define:vars={{
-        cardboard_url: `url("${cardboard_background.src}")`,
         cardboard_darkened_url: `url("${cardboard_background_darkened.src}")`,
     }}
 >
     #cardboard-background {
-        background-image: var(--cardboard_url);
+        background-image: var(--cardboard_darkened_url);
         background-repeat: repeat;
-        background-size: 100%;
+        background-size: 75%;
+        background-position-x: 50vw;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1;
+        z-index: 0;
     }
 </style>
 
 <script>
-    document.addEventListener("scroll", function () {
-        let scroll_amount = window.pageYOffset;
+    let lastScrollAmount = 0;
+    function updateParallax() {
+        let scrollAmount = window.pageYOffset;
 
         let background = document.getElementById("cardboard-background");
-        if (background)
-            background.style.backgroundPositionY = `-${scroll_amount}px`;
-    });
+
+        if (scrollAmount != lastScrollAmount) {
+            if (background)
+                background.style.backgroundPositionY = `-${scrollAmount / 2}px`;
+
+            lastScrollAmount = scrollAmount;
+        }
+
+        requestAnimationFrame(updateParallax);
+    }
+
+    requestAnimationFrame(updateParallax);
 </script>

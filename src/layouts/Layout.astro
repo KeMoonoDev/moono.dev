@@ -1,11 +1,6 @@
 ---
 import { ClientRouter, slide } from "astro:transitions";
-import ReplacementSwap from "astro-vtbot/components/ReplacementSwap.astro";
-import Linter from "astro-vtbot/components/Linter.astro";
-import CloudsBackground from "../components/CloudsBackground.astro";
-import NavBar from "../components/NavBar.astro";
 import BallInABoxContainer from "../components/BallInABoxContainer.astro";
-import CardboardBackground from "../components/CardboardBackground.astro";
 const { title } = Astro.props;
 ---
 
@@ -13,8 +8,6 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<ClientRouter />
-		<ReplacementSwap />
-		<Linter />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="/favicon.ico" />
@@ -22,17 +15,23 @@ const { title } = Astro.props;
 		<title>Moono! {title}</title>
 	</head>
 
-	<body transition:animate="none">
-		<main>
-			<slot />
-		</main>
-		<CloudsBackground />
+	<body>
+		<slot name="background" />
+
+		<div transition:animate="none" transition:name="fake-body">
+			<main
+				transition:name="main-content"
+				transition:animate={slide({ duration: "0.2s" })}
+			>
+				<slot />
+			</main>
+			<slot name="nav-bar" />
+		</div>
 		<BallInABoxContainer />
-		<NavBar />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;

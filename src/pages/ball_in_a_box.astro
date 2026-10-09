@@ -1,16 +1,14 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-import Test from "../components/Test.astro";
-import ContentCard from "../components/ContentCard.astro";
+import CardboardLayout from "../layouts/CardboardLayout.astro";
+import ContentCardboard from "../components/ContentCardboard.astro";
 ---
 
-<Layout title="Ball in a Box">
-	<ContentCard>
+<CardboardLayout title="Ball in a Box">
+	<ContentCardboard>
 		<h1>Ball in a Box</h1>
 		<p>Welcome to my WIP website! Not much to see here currently...</p>
 
 		<button onclick="start_ball_in_a_box()">start game</button>
 		<button onclick="stop_ball_in_a_box()">close game</button>
-	</ContentCard>
-</Layout>
+	</ContentCardboard>
+</CardboardLayout>

@@ -1,0 +1,15 @@
+---
+import CloudsBackground from "../components/CloudsBackground.astro";
+import NavBar from "../components/NavBar.astro";
+import Layout from "./Layout.astro";
+---
+
+<Layout>
+    <slot />
+    <div slot="background">
+        <CloudsBackground />
+    </div>
+    <div slot="nav-bar">
+        <NavBar />
+    </div>
+</Layout>

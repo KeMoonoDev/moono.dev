@@ -64,19 +64,53 @@ import cloud_layer_3 from "../assets/cloud_layer_3.webp";
 </style>
 
 <script>
-    document.addEventListener("scroll", function () {
-        let scroll_amount = window.pageYOffset / window.innerWidth;
+    document.addEventListener("astro:before-swap", (event) => {
+        let currentCloudsBackground =
+            document.getElementById("clouds-background");
 
-        let layer1 = document.getElementById("bg_layer_1");
-        if (layer1)
-            layer1.style.backgroundPositionY = `-${scroll_amount * 120}px`;
+        console.log(currentCloudsBackground);
 
-        let layer2 = document.getElementById("bg_layer_2");
-        if (layer2)
-            layer2.style.backgroundPositionY = `-${scroll_amount * 60}px`;
+        console.log("Before swap");
 
-        let layer3 = document.getElementById("bg_layer_3");
-        if (layer3)
-            layer3.style.backgroundPositionY = `-${scroll_amount * 30}px`;
+        if (!currentCloudsBackground) return;
+
+        console.log("Old doc did have clouds");
+
+        let newCloudsBackground =
+            event.newDocument.getElementById("clouds-background");
+
+        console.log("Checking new doc");
+
+        if (!newCloudsBackground) return;
+
+        console.log("New doc did not have clouds");
+
+        currentCloudsBackground.removeAttribute("data-astro-transition-scope");
     });
+</script>
+
+<script>
+    let lastScrollAmount = 0;
+    function updateParallax() {
+        let scrollAmount = window.pageYOffset / window.innerWidth;
+
+        if (scrollAmount != lastScrollAmount) {
+            let layer1 = document.getElementById("bg_layer_1");
+            if (layer1)
+                layer1.style.backgroundPositionY = `-${scrollAmount * 120}px`;
+
+            let layer2 = document.getElementById("bg_layer_2");
+            if (layer2)
+                layer2.style.backgroundPositionY = `-${scrollAmount * 60}px`;
+
+            let layer3 = document.getElementById("bg_layer_3");
+            if (layer3)
+                layer3.style.backgroundPositionY = `-${scrollAmount * 30}px`;
+
+            lastScrollAmount = scrollAmount;
+        }
+        requestAnimationFrame(updateParallax);
+    }
+
+    requestAnimationFrame(updateParallax);
 </script>
