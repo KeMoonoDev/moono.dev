@@ -1,0 +1,12 @@
+---
+import ContentCardboard from "../components/cards/ContentCardboard.astro";
+import CardboardLayout from "./CardboardLayout.astro";
+let { frontmatter, title } = Astro.props;
+if (frontmatter) title = frontmatter.title;
+---
+
+<CardboardLayout title={title}>
+    <ContentCardboard>
+        <slot />
+    </ContentCardboard>
+</CardboardLayout>

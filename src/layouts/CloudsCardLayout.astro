@@ -1,0 +1,13 @@
+---
+import ContentCardCloud from "../components/cards/ContentCardCloud.astro";
+import CloudsLayout from "./CloudsLayout.astro";
+let { title, frontmatter } = Astro.props;
+title = title ? title : frontmatter.title;
+console.log(title);
+---
+
+<CloudsLayout title={title}>
+    <ContentCardCloud>
+        <slot />
+    </ContentCardCloud>
+</CloudsLayout>

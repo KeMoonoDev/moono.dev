@@ -1,14 +1,18 @@
 ---
-import CardboardLayout from "../layouts/CardboardLayout.astro";
-import ContentCardboard from "../components/cards/ContentCardboard.astro";
+import Cozy from "@components/badges/devins/Cozy.astro";
+import CardboardCardLayout from "../layouts/CardboardCardLayout.astro";
+import CozyAvailableItchIo from "@components/badges/itch/CozyAvailableItchIo.astro";
 ---
 
-<CardboardLayout title="Ball in a Box">
-	<ContentCardboard>
-		<h1>Ball in a Box</h1>
-		<p>Welcome to my WIP website! Not much to see here currently...</p>
+<CardboardCardLayout title="Ball in a Box">
+	<h1>Ball in a Box</h1>
+	<a href="https://kemoono.itch.io/ball-in-a-box"><CozyAvailableItchIo /></a>
+	<span> </span>
+	<a href="https://github.com/KeMoonoDev/ball_in_a_box"
+		><Cozy type="available" platform="github" />
+	</a>
+	<p>Welcome to my WIP website! Not much to see here currently...</p>
 
-		<button onclick="start_ball_in_a_box()">start game</button>
-		<button onclick="stop_ball_in_a_box()">close game</button>
-	</ContentCardboard>
-</CardboardLayout>
+	<button onclick="start_ball_in_a_box()">start game</button>
+	<button onclick="stop_ball_in_a_box()">close game</button>
+</CardboardCardLayout>

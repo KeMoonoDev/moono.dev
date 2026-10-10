@@ -2,9 +2,10 @@
 import CardboardBackground from "../components/backgrounds/CardboardBackground.astro";
 import NavBarCardboard from "../components/NavBarCardboard.astro";
 import Layout from "./Layout.astro";
+const { title } = Astro.props;
 ---
 
-<Layout>
+<Layout title={title}>
     <slot />
     <div slot="background">
         <CardboardBackground />

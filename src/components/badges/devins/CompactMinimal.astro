@@ -1,0 +1,9 @@
+---
+const { type, platform } = Astro.props;
+---
+
+<img
+    alt={platform}
+    height="40"
+    src=`https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact-minimal/${type}/${platform}_vector.svg`
+/>
