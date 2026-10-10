@@ -1,0 +1,66 @@
+<div id="background-container">
+    <slot />
+</div>
+
+<style is:global>
+    #background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    :root::view-transition-group(background-persist) {
+        animation: none;
+        animation-duration: 0s;
+        transition-duration: 0s;
+        z-index: -1;
+    }
+</style>
+
+<script>
+    import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
+
+    let lastBackgroundContainer = document.getElementById(
+        "background-container",
+    );
+
+    document.addEventListener("astro:before-preparation", function () {
+        if (lastBackgroundContainer) lastBackgroundContainer.style = "";
+    });
+
+    // Makes sure that the background only fades when the background is different from one page to the other.
+    document.addEventListener(
+        "astro:before-swap",
+        function (event: TransitionBeforeSwapEvent) {
+            let backgroundContainer = lastBackgroundContainer;
+
+            let newBackgroundContainer = event.newDocument.getElementById(
+                "background-container",
+            );
+
+            lastBackgroundContainer = newBackgroundContainer;
+
+            if (!backgroundContainer) return;
+
+            let currentBackground = backgroundContainer.firstChild;
+            if (!currentBackground || !(currentBackground instanceof Element))
+                return;
+
+            if (!newBackgroundContainer) return;
+
+            let newBackground = newBackgroundContainer.firstChild;
+            if (!newBackground || !(newBackground instanceof Element)) return;
+
+            if (currentBackground.id == newBackground.id) {
+                console.log("adding background persist");
+                backgroundContainer.style =
+                    "view-transition-name: background-persist;";
+                newBackgroundContainer.style =
+                    "view-transition-name: background-persist;";
+            }
+        },
+    );
+</script>

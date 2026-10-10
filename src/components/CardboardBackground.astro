@@ -1,13 +1,11 @@
 ---
 import cardboard_background_darkened from "../assets/cardboard_darkened.png";
+import Background from "./Background.astro";
 ---
 
-<div
-    id="cardboard-background"
-    data-vtbot-replace="cardboard-background"
-    transition:persist="cardboard-background"
->
-</div>
+<Background>
+    <div id="cardboard-background"></div>
+</Background>
 
 <style
     define:vars={{

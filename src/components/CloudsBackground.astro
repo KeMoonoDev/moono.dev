@@ -2,14 +2,17 @@
 import cloud_layer_1 from "../assets/cloud_layer_1.webp";
 import cloud_layer_2 from "../assets/cloud_layer_2.webp";
 import cloud_layer_3 from "../assets/cloud_layer_3.webp";
+import Background from "./Background.astro";
 ---
 
-<div id="clouds-background" transition:persist="clouds-background">
-    <div id="sky" class="background"></div>
-    <div id="bg_layer_3" class="background"></div>
-    <div id="bg_layer_2" class="background"></div>
-    <div id="bg_layer_1" class="background"></div>
-</div>
+<Background>
+    <div id="clouds-background">
+        <div id="sky" class="background"></div>
+        <div id="bg_layer_3" class="background"></div>
+        <div id="bg_layer_2" class="background"></div>
+        <div id="bg_layer_1" class="background"></div>
+    </div>
+</Background>
 
 <style
     define:vars={{
@@ -18,10 +21,6 @@ import cloud_layer_3 from "../assets/cloud_layer_3.webp";
         cloud_layer_3: `url("${cloud_layer_3.src}")`,
     }}
 >
-    #clouds-background {
-        z-index: -1;
-    }
-
     .background {
         background-size: 100%;
         position: fixed;
@@ -40,19 +39,26 @@ import cloud_layer_3 from "../assets/cloud_layer_3.webp";
 
     #bg_layer_1 {
         background-image: var(--cloud_layer_1);
+        /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
         animation: bgScrollLeft 30s linear infinite;
+        */
     }
 
     #bg_layer_2 {
         background-image: var(--clouds_layer_2);
+        /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
         animation: bgScrollLeft 60s linear infinite;
+        */
     }
 
     #bg_layer_3 {
         background-image: var(--cloud_layer_3);
+        /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
         animation: bgScrollLeft 120s linear infinite;
+        */
     }
 
+    /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
     @keyframes bgScrollLeft {
         from {
             background-position-x: 0;
@@ -61,52 +67,40 @@ import cloud_layer_3 from "../assets/cloud_layer_3.webp";
             background-position-x: -100vw;
         }
     }
+    */
 </style>
-
-<script>
-    document.addEventListener("astro:before-swap", (event) => {
-        let currentCloudsBackground =
-            document.getElementById("clouds-background");
-
-        console.log(currentCloudsBackground);
-
-        console.log("Before swap");
-
-        if (!currentCloudsBackground) return;
-
-        console.log("Old doc did have clouds");
-
-        let newCloudsBackground =
-            event.newDocument.getElementById("clouds-background");
-
-        console.log("Checking new doc");
-
-        if (!newCloudsBackground) return;
-
-        console.log("New doc did not have clouds");
-    });
-</script>
 
 <script>
     let lastScrollAmount = 0;
     function updateParallax() {
         let scrollAmount = window.pageYOffset / window.innerWidth;
+        let now = performance.now() / 1000;
+        console.log(now);
+        let layer1 = document.getElementById("bg_layer_1");
+        let layer2 = document.getElementById("bg_layer_2");
+        let layer3 = document.getElementById("bg_layer_3");
 
         if (scrollAmount != lastScrollAmount) {
-            let layer1 = document.getElementById("bg_layer_1");
             if (layer1)
                 layer1.style.backgroundPositionY = `-${scrollAmount * 120}px`;
 
-            let layer2 = document.getElementById("bg_layer_2");
             if (layer2)
                 layer2.style.backgroundPositionY = `-${scrollAmount * 60}px`;
 
-            let layer3 = document.getElementById("bg_layer_3");
             if (layer3)
                 layer3.style.backgroundPositionY = `-${scrollAmount * 30}px`;
 
             lastScrollAmount = scrollAmount;
         }
+
+        if (layer1)
+            layer1.style.backgroundPositionX = `-${(now / 30) * window.innerWidth}px`;
+
+        if (layer2)
+            layer2.style.backgroundPositionX = `-${(now / 60) * window.innerWidth}px`;
+
+        if (layer3)
+            layer3.style.backgroundPositionX = `-${(now / 120) * window.innerWidth}px`;
         requestAnimationFrame(updateParallax);
     }
 
