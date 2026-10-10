@@ -2,10 +2,7 @@
 import BallInABoxContainer from "./BallInABoxContainer.astro";
 ---
 
-<div
-    transition:persist="desktop-toys"
-    style="view-transition-name: desktop-toys;"
->
+<div transition:persist="desktop-toys">
     <BallInABoxContainer />
 </div>
 
@@ -19,5 +16,11 @@ import BallInABoxContainer from "./BallInABoxContainer.astro";
         padding: 0px;
         width: 100%;
         height: 100%;
+
+        view-transition-name: desktop-toys;
+    }
+
+    :root::view-transition-group(desktop-toys) {
+        animation: none;
     }
 </style>
