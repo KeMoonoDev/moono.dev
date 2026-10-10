@@ -1,24 +1,24 @@
 ---
-import cloud_layer_1 from "../assets/cloud_layer_1.webp";
-import cloud_layer_2 from "../assets/cloud_layer_2.webp";
-import cloud_layer_3 from "../assets/cloud_layer_3.webp";
-import Background from "./Background.astro";
+import layer1 from "../../assets/clouds/layer1.webp";
+import layer2 from "../../assets/clouds/layer2.webp";
+import layer3 from "../../assets/clouds/layer3.webp";
+import Background from "../Background.astro";
 ---
 
 <Background>
     <div id="clouds-background">
         <div id="sky" class="background"></div>
-        <div id="bg_layer_3" class="background"></div>
-        <div id="bg_layer_2" class="background"></div>
-        <div id="bg_layer_1" class="background"></div>
+        <div id="layer3" class="background"></div>
+        <div id="layer2" class="background"></div>
+        <div id="layer1" class="background"></div>
     </div>
 </Background>
 
 <style
     define:vars={{
-        cloud_layer_1: `url("${cloud_layer_1.src}")`,
-        clouds_layer_2: `url("${cloud_layer_2.src}")`,
-        cloud_layer_3: `url("${cloud_layer_3.src}")`,
+        layer1: `url("${layer1.src}")`,
+        layer2: `url("${layer2.src}")`,
+        layer3: `url("${layer3.src}")`,
     }}
 >
     .background {
@@ -37,22 +37,22 @@ import Background from "./Background.astro";
         filter: none;
     }
 
-    #bg_layer_1 {
-        background-image: var(--cloud_layer_1);
+    #layer1 {
+        background-image: var(--layer1);
         /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
         animation: bgScrollLeft 30s linear infinite;
         */
     }
 
-    #bg_layer_2 {
-        background-image: var(--clouds_layer_2);
+    #layer2 {
+        background-image: var(--layer2);
         /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
         animation: bgScrollLeft 60s linear infinite;
         */
     }
 
-    #bg_layer_3 {
-        background-image: var(--cloud_layer_3);
+    #layer3 {
+        background-image: var(--layer3);
         /* Handle animations in javascript instead because the css animations aren't kept during page transitions.
         animation: bgScrollLeft 120s linear infinite;
         */
@@ -75,10 +75,9 @@ import Background from "./Background.astro";
     function updateParallax() {
         let scrollAmount = window.pageYOffset / window.innerWidth;
         let now = performance.now() / 1000;
-        console.log(now);
-        let layer1 = document.getElementById("bg_layer_1");
-        let layer2 = document.getElementById("bg_layer_2");
-        let layer3 = document.getElementById("bg_layer_3");
+        let layer1 = document.getElementById("layer1");
+        let layer2 = document.getElementById("layer2");
+        let layer3 = document.getElementById("layer3");
 
         if (scrollAmount != lastScrollAmount) {
             if (layer1)

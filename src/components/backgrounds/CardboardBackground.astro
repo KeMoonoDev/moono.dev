@@ -1,6 +1,6 @@
 ---
-import cardboard_background_darkened from "../assets/cardboard_darkened.png";
-import Background from "./Background.astro";
+import cardboardBackground from "../../assets/cardboard/background.webp";
+import Background from "../Background.astro";
 ---
 
 <Background>
@@ -9,11 +9,11 @@ import Background from "./Background.astro";
 
 <style
     define:vars={{
-        cardboard_darkened_url: `url("${cardboard_background_darkened.src}")`,
+        background: `url("${cardboardBackground.src}")`,
     }}
 >
     #cardboard-background {
-        background-image: var(--cardboard_darkened_url);
+        background-image: var(--background);
         background-repeat: repeat;
         background-size: 75%;
         background-position-x: 50vw;
