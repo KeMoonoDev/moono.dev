@@ -1,5 +1,29 @@
 ---
-import badge from "../../../assets/badges/cozy/itch-io_vector.svg";
+import badge from "@assets/badges/cozy/itch-io_vector.svg";
+const { href, shadow = "0" } = Astro.props;
 ---
 
-<img alt="itch.io" height="56" src={badge.src} />
+{
+    href ? (
+        <a href={href} target="_blank" rel="noopener noreferrer">
+            <img alt="itch.io" height="56" src={badge.src} />
+        </a>
+    ) : (
+        <img alt="itch.io" height="56" src={badge.src} />
+    )
+}
+
+<style
+    define:vars={{
+        shadow: `${shadow}px`,
+    }}
+>
+    img {
+        filter: drop-shadow(0 0 var(--shadow) rgba(0, 0, 0, 0.4));
+    }
+
+    a:hover,
+    a:focus {
+        filter: brightness(115%);
+    }
+</style>

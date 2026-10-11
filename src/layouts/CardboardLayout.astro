@@ -5,7 +5,7 @@ import Layout from "./Layout.astro";
 const { title } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} id="cardboard">
     <slot />
     <div slot="background">
         <CardboardBackground />
@@ -14,3 +14,12 @@ const { title } = Astro.props;
         <NavBarCardboard />
     </div>
 </Layout>
+
+<style is:global>
+    #cardboard > * {
+        font-family: "Fredericka the Great", serif;
+    }
+    #cardboard p {
+        font-size: 22px;
+    }
+</style>

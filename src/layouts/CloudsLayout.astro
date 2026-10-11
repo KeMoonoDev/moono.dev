@@ -5,7 +5,7 @@ import Layout from "./Layout.astro";
 const { title } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} id="clouds">
     <slot />
     <div slot="background">
         <CloudsBackground />
@@ -14,3 +14,9 @@ const { title } = Astro.props;
         <NavBar />
     </div>
 </Layout>
+
+<style is:global>
+    #clouds > * {
+        font-family: "Lunasima", sans-serif;
+    }
+</style>
