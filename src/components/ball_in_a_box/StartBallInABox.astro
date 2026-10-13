@@ -1,0 +1,36 @@
+---
+import CardboardButton from "@assets/buttons/cardboard_button.webp";
+---
+
+<button onclick="start_ball_in_a_box()">Open box</button>
+
+<style
+    define:vars={{
+        "cardboard-button": `url(${CardboardButton.src})`,
+    }}
+>
+    button {
+        background-color: #0000;
+        background-image: var(--cardboard-button);
+        background-size: 100% 100%;
+        border: none;
+        padding-left: 4px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        color: #0d001a;
+        width: calc(255px * 0.6);
+        height: calc(147px * 0.45);
+        font-family: "Fredericka the Great", serif;
+        font-size: 26px;
+        text-shadow: 0 0 0 #0d001abb;
+        cursor: pointer;
+    }
+
+    button:hover {
+        filter: brightness(90%);
+    }
+
+    button:active {
+        filter: brightness(80%);
+    }
+</style>

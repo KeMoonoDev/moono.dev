@@ -2,27 +2,70 @@
 layout: "@layouts/CardboardCardLayout.astro"
 title: Ball in a Box
 ---
+import Center from "@components/Center.astro"
 import Cozy from "@components/badges/devins/Cozy.astro"
 import CozyAvailableItchIo from "@components/badges/itch/CozyAvailableItchIo.astro"
+import StartBallInABox from "@components/ball_in_a_box/StartBallInABox.astro"
+import StopBallInABox from "@components/ball_in_a_box/StopBallInABox.astro"
 
 # Ball in a Box
 
-<CozyAvailableItchIo
-    shadow="1.5"
-    href="https://kemoono.itch.io/ball-in-a-box"
-/>
+<p style="text-align:center; margin-bottom: 22px">Ball in a Box is a **desktop toy** where you have a ball in a box that you can interact with by **moving the box around**.
+Read more about the games features on its **itch.io** page!</p>
 
-<span> </span>
+<Center>
+    <StartBallInABox/>
+    <StopBallInABox/>
+</Center>
 
-<Cozy
-    action="available"
-    service="github"
-    shadow="1.5"
-    href="https://github.com/KeMoonoDev/ball_in_a_box"
-/>
+<br/>
 
-Ball in a Box! It's a **ball**! In a **box**! What else can i say?
+<Center>
+    <CozyAvailableItchIo
+        shadow="1.5"
+        href="https://kemoono.itch.io/ball-in-a-box"
+    />
+
+    <Cozy
+        action="available"
+        service="github"
+        shadow="1.5"
+        href="https://github.com/KeMoonoDev/ball_in_a_box"
+    />
+</Center>
+
+<br/>
+
+### Credits
+
+- The game library used for this game is **my own fork** of [Macroquad](https://macroquad.rs) which adds certain features needed for Ball in a Box to work.
+- The default font this game uses is [Fredericka The Great](https://fonts.google.com/specimen/Fredericka+the+Great).
+- Thanks to [jumbledFox](https://github.com/jumbledFox) for letting me use some of [their code](https://github.com/jumbledFox/minesweeper/blob/master/build.rs) for this project!
+- The rest of the assets and programming was done by me.
+
+<br/>
+
+### Tools & Technologies
+
+- **Programming languages**\
+Ball in a Box is written in **Rust**.
+I also used **GLSL** for writing custom shaders and materials for the ball and its shadows.\
+\
+Languages that were less used include **Python**, which was used to apply an effect to the ball textures to make them appear more round,
+and **JavaScript** to make the additional features added to my Macroquad fork work on the web.
 
 
-<button onclick="start_ball_in_a_box()">start game</button>
-<button onclick="stop_ball_in_a_box()">close game</button>
+- **Operating System APIs**\
+Ball in a Box needed certain features to make it work the way I imagined, which Macroquad did not have.\
+\
+I needed to use the **Windows API** and the **X11 API on Linux** to add the following features:
+    - Getting the mouse screen position (Not window position)
+    - Borderless windows
+    - Force spawning the window at center of the screen
+
+
+- **Assets**\
+For the assets I made myself, I took pictures of cardboard I had laying around and adjusted the colors in **Krita**.
+I also used Krita to draw the textures for the balls.\
+\
+I used **Audacity** to process the ball bounce sounds, mostly just to remove the background noise in the recordings.
