@@ -3,8 +3,14 @@ layout: "@layouts/CardboardCardLayout.astro"
 title: Ball in a Box
 ---
 import Center from "@components/Center.astro"
+
 import Cozy from "@components/badges/devins/Cozy.astro"
 import CozyAvailableItchIo from "@components/badges/itch/CozyAvailableItchIo.astro"
+
+import AliceCutout from "@components/ball_in_a_box/AliceCutout.astro"
+import TheodoreCutout from "@components/ball_in_a_box/TheodoreCutout.astro"
+import CherryCutout from "@components/ball_in_a_box/CherryCutout.astro"
+
 import StartBallInABox from "@components/ball_in_a_box/StartBallInABox.astro"
 import StopBallInABox from "@components/ball_in_a_box/StopBallInABox.astro"
 
@@ -13,12 +19,17 @@ import StopBallInABox from "@components/ball_in_a_box/StopBallInABox.astro"
 <p style="text-align:center; margin-bottom: 22px">Ball in a Box is a **desktop toy** where you have a ball in a box that you can interact with by **moving the box around**.
 Read more about the games features on its **itch.io** page!</p>
 
+<AliceCutout/>
+
 <Center>
     <StartBallInABox/>
     <StopBallInABox/>
 </Center>
 
 <br/>
+
+<TheodoreCutout/>
+<CherryCutout/>
 
 <Center>
     <CozyAvailableItchIo

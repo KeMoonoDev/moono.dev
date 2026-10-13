@@ -1,0 +1,22 @@
+---
+import TheodoreCutout from "@assets/cutouts/TheodoreCutout.webp";
+---
+
+<div>
+    <img src={TheodoreCutout.src} alt="Ball cutout" />
+</div>
+
+<style>
+    div {
+        width: auto;
+        position: relative;
+    }
+    img {
+        height: 175px;
+        position: absolute;
+        top: -30px;
+        right: calc(50% - 360px);
+        rotate: -20deg;
+        filter: drop-shadow(6px 5px 0.5px #0009);
+    }
+</style>

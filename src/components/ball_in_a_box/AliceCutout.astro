@@ -1,0 +1,21 @@
+---
+import AliceCutout from "@assets/cutouts/AliceCutout.webp";
+---
+
+<div>
+    <img src={AliceCutout.src} alt="Ball cutout" />
+</div>
+
+<style>
+    div {
+        width: auto;
+        position: relative;
+    }
+    img {
+        height: 170px;
+        position: absolute;
+        left: calc(50% - 420px);
+        rotate: 10deg;
+        filter: drop-shadow(7px 2px 0.5px #0009);
+    }
+</style>

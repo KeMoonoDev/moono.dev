@@ -1,0 +1,22 @@
+---
+import CherryCutout from "@assets/cutouts/CherryCutout.webp";
+---
+
+<div>
+    <img src={CherryCutout.src} alt="Ball cutout" />
+</div>
+
+<style>
+    div {
+        width: auto;
+        position: relative;
+    }
+    img {
+        height: 160px;
+        position: absolute;
+        top: -50px;
+        right: calc(50% - 510px);
+        rotate: 5deg;
+        filter: drop-shadow(7px 2px 0.5px #0009);
+    }
+</style>
