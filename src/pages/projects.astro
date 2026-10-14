@@ -1,0 +1,68 @@
+---
+import CenterContent from "@components/CenterContent.astro";
+import CloudsLayout from "@layouts/CloudsLayout.astro";
+const projects = Object.values(
+    import.meta.glob("./projects/*.mdx", { eager: true }),
+);
+console.log(projects);
+---
+
+<CloudsLayout>
+    <CenterContent>
+        <div class="grid">
+            <!-- 
+            {
+                projects.map((project: any) => (
+                    <div class="item">
+                        <a href={project.url}>
+                            <img
+                                src={`${project.url}/banner.webp`}
+                                alt={project.frontmatter.title}
+                            />
+                        </a>
+                    </div>
+                ))
+            }
+            -->
+            <div class="item">
+                <a href="/projects/ball_in_a_box">
+                    <img
+                        src="/projects/ball_in_a_box/banner.webp"
+                        alt="Ball in a Box"
+                    />
+                </a>
+            </div>
+        </div>
+    </CenterContent>
+
+    <style>
+        img {
+            max-width: 320px;
+            max-height: 172px;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            place-content: center;
+            padding: 12px;
+            gap: 12px;
+        }
+
+        .item {
+            max-width: 320px;
+            min-width: 320px;
+            height: 172px;
+
+            /*
+            background: hsl(340 80% 50%);
+            border: 5px solid hsl(340 80% 70%);
+            border-radius: 1rem;
+            */
+
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+        }
+    </style>
+</CloudsLayout>
