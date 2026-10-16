@@ -1,0 +1,70 @@
+---
+import NavItemCardboard from "./NavItemCardboard.astro";
+import cardboardBackground from "@assets/cardboard/background.webp";
+import cardboardForeground from "@assets/cardboard/foreground.webp";
+---
+
+<nav transition:name="nav-bar" transition:animate="fade">
+    <div id="cardboard-nav-background" class="hidden">
+        <div class="items-container">
+            <NavItemCardboard href="/">Home</NavItemCardboard>
+            <NavItemCardboard href="/about">About</NavItemCardboard>
+            <NavItemCardboard href="/projects">Projects</NavItemCardboard>
+        </div>
+    </div>
+</nav>
+
+<style
+    define:vars={{
+        background: `url("${cardboardForeground.src}")`,
+    }}
+>
+    nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #cardboard-nav-background {
+        background-image: var(--background);
+        background-repeat: repeat;
+        background-size: 125%;
+        background-color: white;
+        box-shadow: 0 0 24px #000a;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+
+        padding: 12px;
+    }
+
+    div {
+        transition: transform 0.1s ease-in-out;
+    }
+
+    .hidden {
+        transform: translateY(-140px);
+    }
+
+    .hidden > * {
+        transform: translateY(140px);
+    }
+</style>
+
+<script>
+    let minScroll = 55;
+    document.addEventListener("scroll", function () {
+        let background = document.getElementById("cardboard-nav-background");
+        if (!background) return;
+
+        let scrollAmount = window.pageYOffset;
+        if (scrollAmount < minScroll) {
+            background.classList.add("hidden");
+        } else {
+            background.classList.remove("hidden");
+        }
+    });
+</script>
