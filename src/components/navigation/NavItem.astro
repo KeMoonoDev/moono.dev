@@ -6,18 +6,160 @@ const { href } = Astro.props;
 const modifiedPath = tempPath == "/" ? "/" : tempPath.replace(/\/+$/, "");
 const modifiedHref = href == "/" ? "/" : href.replace(/\/+$/, "");
 const isMatch = modifiedPath == modifiedHref;
+
+import cloud from "@assets/buttons/cloud_button.webp";
 ---
 
-<a href={href} class=`${ isMatch ? "disabled" : "" }`><slot /></a>
+<a href={href} class=`${ isMatch ? "disabled" : "" }`>
+    <img src={cloud.src} class="back" />
+    <img src={cloud.src} class="left" />
+    <img src={cloud.src} class="right" />
+    <img src={cloud.src} class="front" />
+    <div>
+        <slot />
+    </div>
+</a>
 
 <style>
-    a.disabled {
-        color: green;
-        pointer-events: none;
-        cursor: default;
+    a {
+        container-type: size;
+        display: inline-block;
+        height: min(80px, calc(33vw - 40px) / 1.875);
+        max-width: calc(33vw - 40px);
+        aspect-ratio: 1.875;
+        margin: 20px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        position: relative;
+        text-align: center;
+        color: white;
+        font-weight: bolder;
     }
 
-    a {
-        padding: 10px;
+    a.disabled {
+        pointer-events: none;
+        cursor: default;
+        filter: brightness(130%);
+    }
+
+    a:hover {
+        filter: brightness(115%);
+    }
+
+    a:active {
+        filter: brightness(115%);
+    }
+
+    img {
+        transition-duration: 0.2s;
+        aspect-ratio: 1.875;
+        position: absolute;
+        filter: opacity(0);
+    }
+
+    .front {
+        width: 90%;
+        left: 0%;
+        bottom: -10%;
+    }
+
+    .left {
+        width: 70%;
+        left: -7%;
+        bottom: 20%;
+    }
+
+    .right {
+        width: 70%;
+        right: -5%;
+        bottom: 10%;
+    }
+
+    .back {
+        width: 85%;
+        left: 7.5%;
+        bottom: 30%;
+    }
+
+    .disabled > .front {
+        transition-duration: 0.2s;
+        bottom: -16%;
+        filter: opacity(1) drop-shadow(0 0 10px #0009);
+    }
+
+    .disabled > .left {
+        transition-duration: 0.2s;
+        left: -17%;
+        filter: opacity(1) drop-shadow(0 0 10px #0009);
+    }
+
+    .disabled > .right {
+        transition-duration: 0.2s;
+        right: -15%;
+        filter: opacity(1) drop-shadow(0 0 10px #0009);
+    }
+
+    .disabled > .back {
+        transition-duration: 0.2s;
+        bottom: 36%;
+        filter: opacity(1) drop-shadow(0 0 10px #0009);
+    }
+
+    a:hover > .front {
+        transition-duration: 0.2s;
+        bottom: -16%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:hover > .left {
+        transition-duration: 0.2s;
+        left: -17%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:hover > .right {
+        transition-duration: 0.2s;
+        right: -15%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:hover > .back {
+        transition-duration: 0.2s;
+        bottom: 36%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:a > .front {
+        transition-duration: 0.2s;
+        bottom: -16%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:a > .left {
+        transition-duration: 0.2s;
+        left: -17%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:a > .right {
+        transition-duration: 0.2s;
+        right: -15%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    a:a > .back {
+        transition-duration: 0.2s;
+        bottom: 36%;
+        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    }
+
+    div {
+        font-size: 20cqw;
+        color: black;
+        filter: drop-shadow(0 0 5px white);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 </style>
