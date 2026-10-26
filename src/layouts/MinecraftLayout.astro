@@ -1,0 +1,72 @@
+---
+import MinecraftBackground from "@components/backgrounds/MinecraftBackground.astro";
+import NavBarMinecraft from "@components/navigation/NavBarMinecraft.astro";
+import Layout from "./Layout.astro";
+import ContentCardMinecraft from "@components/cards/ContentCardMinecraft.astro";
+const { title, discardMainTransition } = Astro.props;
+---
+
+<Layout
+    title={title}
+    discardMainTransition={discardMainTransition}
+    id="minecraft"
+>
+    <slot />
+    <div slot="background">
+        <MinecraftBackground />
+    </div>
+
+    <div slot="nav-bar">
+        <NavBarMinecraft />
+    </div>
+</Layout>
+
+<style is:global>
+    @font-face {
+        font-family: "Monocraft";
+        src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft-ttf/Monocraft.ttf")
+            format("truetype");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: "Monocraft";
+        src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft-ttf/weights/Monocraft-Bold.ttf")
+            format("truetype");
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    #minecraft > * {
+        font-family: "Monocraft", serif;
+    }
+
+    #minecraft h1 {
+        font-size: 3em;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+    }
+
+    #minecraft h2 {
+        color: white;
+        text-align: center;
+    }
+
+    #minecraft h3 {
+        color: white;
+        text-align: center;
+    }
+
+    #minecraft ul {
+        color: white;
+        text-shadow: 0.11em 0.11em 0 #3f3f3f;
+    }
+
+    #minecraft p {
+        font-size: 1.5em;
+        color: white;
+        text-shadow: 0.11em 0.11em 0 #3f3f3f;
+    }
+</style>

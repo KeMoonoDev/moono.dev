@@ -1,0 +1,12 @@
+---
+import ContentCardMinecraft from "../components/cards/ContentCardMinecraft.astro";
+import MinecraftLayout from "./MinecraftLayout.astro";
+let { frontmatter, title } = Astro.props;
+if (frontmatter) title = frontmatter.title;
+---
+
+<MinecraftLayout title={title} discardMainTransition="true">
+    <ContentCardMinecraft includeMainTransition="true">
+        <slot />
+    </ContentCardMinecraft>
+</MinecraftLayout>

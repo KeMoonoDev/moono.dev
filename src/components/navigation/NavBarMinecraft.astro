@@ -1,0 +1,28 @@
+---
+import NavItemMinecraft from "./NavItemMinecraft.astro";
+---
+
+<nav transition:name="nav-bar" transition:animate="fade">
+    <div id="minecraft-nav-background" class="hidden">
+        <div class="items-container">
+            <NavItemMinecraft href="/">Home</NavItemMinecraft>
+            <NavItemMinecraft href="/about">About</NavItemMinecraft>
+            <NavItemMinecraft href="/projects">Projects</NavItemMinecraft>
+        </div>
+    </div>
+</nav>
+
+<style>
+    nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #minecraft-nav-background {
+    }
+</style>

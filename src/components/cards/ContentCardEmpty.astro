@@ -1,0 +1,13 @@
+---
+import { slide } from "astro/virtual-modules/transitions.js";
+import CenterContent from "../CenterContent.astro";
+---
+
+<CenterContent>
+    <div
+        transition:name="main-content"
+        transition:animate={slide({ duration: "0.2s" })}
+    >
+        <slot />
+    </div>
+</CenterContent>

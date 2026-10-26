@@ -32,18 +32,11 @@ const { title, id } = Astro.props;
 
 	<body id={id}>
 		<slot name="background" />
-
-		<div
-			transition:animate="none"
-			transition:name="fake-body"
-			style="overflow-x: hidden;"
-		>
-			<main
-				transition:name="main-content"
-				transition:animate={slide({ duration: "0.2s" })}
-			>
+		<div style="overflow-x: hidden;">
+			<main>
 				<slot />
 			</main>
+
 			<slot name="nav-bar" />
 		</div>
 		<DesktopToys />

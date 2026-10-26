@@ -1,10 +1,15 @@
 ---
 import CenterContent from "../CenterContent.astro";
 import cardboardForeground from "../../assets/cardboard/foreground.webp";
+import { slide } from "astro/virtual-modules/transitions.js";
 ---
 
 <CenterContent>
-    <div class="content-background">
+    <div
+        class="content-background"
+        transition:name="main-content"
+        transition:animate={slide({ duration: "0.2s" })}
+    >
         <slot />
     </div>
 </CenterContent>

@@ -1,5 +1,5 @@
 ---
-import CenterContent from "@components/CenterContent.astro";
+import ContentCardEmpty from "@components/cards/ContentCardEmpty.astro";
 import CloudsLayout from "@layouts/CloudsLayout.astro";
 const projects = Object.values(
     import.meta.glob("./projects/*.mdx", { eager: true }),
@@ -8,7 +8,7 @@ console.log(projects);
 ---
 
 <CloudsLayout>
-    <CenterContent>
+    <ContentCardEmpty>
         <div class="grid">
             <div class="item">
                 <a class="ball-in-a-box" href="/projects/ball_in_a_box">
@@ -29,7 +29,7 @@ console.log(projects);
                 </a>
             </div>
         </div>
-    </CenterContent>
+    </ContentCardEmpty>
 
     <style>
         a {
