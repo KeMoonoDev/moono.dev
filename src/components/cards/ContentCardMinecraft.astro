@@ -1,7 +1,6 @@
 ---
 import CenterContent from "@components/CenterContent.astro";
 import { slide } from "astro/virtual-modules/transitions.js";
-let { includeMainTransition } = Astro.props;
 ---
 
 <CenterContent>
@@ -16,7 +15,7 @@ let { includeMainTransition } = Astro.props;
 
 <style>
     .content-background {
-        padding: 12px;
+        padding: 32px;
         background-color: rgba(0, 0, 0, 0.5);
         border: 4px solid rgba(0, 0, 0, 0.75);
         outline: 4px solid rgb(127, 127, 127, 0.5);

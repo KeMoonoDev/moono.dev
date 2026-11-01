@@ -18,36 +18,61 @@ const { title } = Astro.props;
 <style is:global>
     #cardboard > * {
         font-family: "Fredericka the Great", serif;
+        letter-spacing: 0.5px;
     }
 
     #cardboard h1 {
         color: rgb(13, 0, 26);
-        font-size: 48px;
+        font-size: 54px;
         text-align: center;
     }
 
     #cardboard h2 {
         color: rgb(13, 0, 26);
-        font-size: 32px;
+        font-size: 36px;
         text-align: center;
     }
 
     #cardboard h3 {
         color: rgb(13, 0, 26);
-        font-size: 24px;
+        font-size: 28px;
         text-align: center;
+    }
+
+    #cardboard h4 {
+        color: rgb(13, 0, 26);
+        font-size: 24px;
     }
 
     #cardboard ul {
         color: rgb(13, 0, 26);
-        font-size: 22px;
-        text-shadow: 0 0 0 #0d001abb;
+        font-size: 24px;
+        text-shadow: 0 0 0 #0d001a;
     }
 
     #cardboard p {
-        margin-bottom: 8px;
         color: rgb(13, 0, 26);
-        font-size: 22px;
-        text-shadow: 0 0 0 #0d001abb;
+        font-size: 24px;
+        text-shadow: 0 0 0 #0d001a;
+    }
+
+    #cardboard summary {
+        color: rgb(13, 0, 26);
+        font-size: 20px;
+        text-shadow: 0 0 0 #0d001a;
+    }
+
+    #cardboard strong {
+        text-shadow: 0 0 0 #0000;
+    }
+
+    #cardboard a {
+        color: #230074;
+        text-shadow: 0 0 0 #230074;
+    }
+
+    #cardboard a:hover {
+        color: #370097;
+        text-shadow: 0 0 0 #370097;
     }
 </style>

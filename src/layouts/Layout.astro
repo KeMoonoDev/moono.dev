@@ -43,15 +43,92 @@ const { title, id } = Astro.props;
 	</body>
 </html>
 
+<script>
+	// This is all here because whenever I want the target header to start flashing whenever you click an anchor.
+	// Problem is that if you click on the same anchor twice (or 2 different anchors with the same hash) it wont flash the second time.
+	// This fixes that by checking all anchors to see if they are a hash
+	let currentAnchorTarget: Element | null = null;
+
+	function hookAllAnchorsWithHashes(newDocument: Document) {
+		let anchors = newDocument.getElementsByTagName("a");
+		for (let i = 0; i < anchors.length; i++) {
+			let anchor = anchors[i];
+			let href = anchor.getAttribute("href");
+
+			if (!href || !href.startsWith("#")) continue;
+
+			let id = href.slice(1);
+			let targetElement = newDocument.getElementById(id);
+
+			if (targetElement == null) continue;
+
+			anchor.onclick = function () {
+				if (currentAnchorTarget != null)
+					currentAnchorTarget.classList.remove("anchor-target");
+				void targetElement.offsetHeight; // Reflow / restart css animation
+				targetElement.classList.add("anchor-target");
+				currentAnchorTarget = targetElement;
+			};
+		}
+	}
+
+	document.addEventListener("astro:before-swap", (event) => {
+		console.log("whack");
+		hookAllAnchorsWithHashes(event.newDocument);
+	});
+
+	hookAllAnchorsWithHashes(document);
+</script>
+
 <style is:global>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		scroll-behavior: smooth;
 	}
 
 	:root::view-transition-group(root) {
 		z-index: -1;
+	}
+
+	* {
+		scroll-margin-top: 124px;
+	}
+
+	.anchor-target {
+		animation: anchorTarget 2s ease;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes anchorTarget {
+		0% {
+			background-color: #ffffff00;
+		}
+		12.5% {
+			background-color: #ffffff7f;
+		}
+		25% {
+			background-color: #ffffff33;
+		}
+		37.5% {
+			background-color: #ffffff7f;
+		}
+		50% {
+			background-color: #ffffff33;
+		}
+		62.5% {
+			background-color: #ffffff7f;
+		}
+		75% {
+			background-color: #ffffff33;
+		}
+		87.5% {
+			background-color: #ffffff7f;
+		}
+		100% {
+			background-color: #ffffff00;
+		}
 	}
 </style>
