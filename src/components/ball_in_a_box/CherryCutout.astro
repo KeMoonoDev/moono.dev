@@ -1,9 +1,10 @@
 ---
 import CherryCutout from "@assets/cutouts/CherryCutout.webp";
+import { Image } from "astro:assets";
 ---
 
 <div>
-    <img src={CherryCutout.src} alt="Ball cutout" />
+    <Image src={CherryCutout} loading="eager" alt="Ball cutout" height="160" />
 </div>
 
 <style>
@@ -12,7 +13,6 @@ import CherryCutout from "@assets/cutouts/CherryCutout.webp";
         position: relative;
     }
     img {
-        height: 160px;
         position: absolute;
         top: -50px;
         right: calc(50% - 510px);

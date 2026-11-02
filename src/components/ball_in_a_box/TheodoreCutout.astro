@@ -1,9 +1,15 @@
 ---
 import TheodoreCutout from "@assets/cutouts/TheodoreCutout.webp";
+import { Image } from "astro:assets";
 ---
 
 <div>
-    <img src={TheodoreCutout.src} alt="Ball cutout" />
+    <Image
+        src={TheodoreCutout}
+        loading="eager"
+        alt="Ball cutout"
+        height="175"
+    />
 </div>
 
 <style>
@@ -12,7 +18,6 @@ import TheodoreCutout from "@assets/cutouts/TheodoreCutout.webp";
         position: relative;
     }
     img {
-        height: 175px;
         position: absolute;
         top: -30px;
         right: calc(50% - 360px);

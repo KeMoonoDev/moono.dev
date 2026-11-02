@@ -8,10 +8,11 @@ const modifiedHref = href == "/" ? "/" : href.replace(/\/+$/, "");
 const isMatch = modifiedPath == modifiedHref;
 
 import cardboardButton from "@assets/buttons/cardboard_button.webp";
+import { Image } from "astro:assets";
 ---
 
 <a href={href} class=`${ isMatch ? "disabled" : "" }`>
-    <img src={cardboardButton.src} alt="Cardboard button" />
+    <Image src={cardboardButton} loading="eager" alt="Cardboard button" />
     <div>
         <slot />
     </div>
@@ -48,6 +49,7 @@ import cardboardButton from "@assets/buttons/cardboard_button.webp";
 
     img {
         width: 100%;
+        height: 100%;
         aspect-ratio: 1.875;
     }
 

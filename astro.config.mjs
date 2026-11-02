@@ -8,6 +8,9 @@ import remarkHeadingId from 'remark-heading-id';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://moono.dev',
+    image: {
+        remotePatterns: [{ protocol: "https" }],
+    },
     integrations: [mdx({
         processor: unified({
             remarkPlugins: [remarkHeadingId]
