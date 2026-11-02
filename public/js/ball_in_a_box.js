@@ -17,8 +17,8 @@ function hook_sapp_set_window_position(width, height) {
         window.innerWidth / 2;
     let origin_y =
         window.innerHeight / 2;
-    canvas.style.left = `calc(50% + ${width - (origin_x - box_width / 2)}px)`;
-    canvas.style.top = `calc(50% + ${height - (origin_y - box_height / 2)}px)`;
+    canvas.style.left = `calc(50vw + ${width - (origin_x - box_width / 2)}px)`;
+    canvas.style.top = `calc(50vh + ${height - (origin_y - box_height / 2)}px)`;
 };
 
 function get_canvas_position_x() {
