@@ -234,4 +234,21 @@ Audacity, primarily to remove the background noise.
 
 ### Web port \{#web-port}
 
-TO BE WRITTEN
+When I started working on my website, something I wanted to add from the beginning was a web version of Ball in a Box.
+The idea for the implementation was simple. Simply pretend the canvas is a window, and then move the canvas around.
+
+A problem I had was that Macroquad didn't have **set_window_size** and **set_window_position** implemented for wasm builds,
+so I had to add those. Implementing **set_window_size** was simple, as I just had to update **canvas.style.width** and
+**canvas.style.height** on the **JavaScript** side, as well as updating the resolution of the canvas.
+
+Figuring out how to implement **set_window_position** however was a bit tricky, since it wouldn't really make sense to
+have it work unless the canvas had a position of **absolute** or **fixed**. Additionally, in certain scenarios, the user
+would probably want to position a canvas wrapper instead of the canvas itself. 
+
+Instead of fully implementing **set_window_position**, I made it so Macroquad would run a user supplied JavaScript
+function for positioning the canvas (or the canvas wrapper) however it needs to be positioned.
+
+The only feature from my fork that needed to be added to wasm was the ability to get the mouse position relative to the
+screen. To do that, I added a listener to the **"mousemove"** event, and stored the values of **event.clientX** and
+**event.clientY** on the JavaScript side. Afterwards, I simply just return those values whenever the game asks for the
+screen mouse position.
