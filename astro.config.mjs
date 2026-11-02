@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import { unified } from '@astrojs/markdown-remark';
 import remarkHeadingId from 'remark-heading-id';
@@ -9,8 +9,9 @@ import remarkHeadingId from 'remark-heading-id';
 export default defineConfig({
     site: 'https://moono.dev',
     image: {
-        remotePatterns: [{ protocol: "https" }],
+        service: passthroughImageService()
     },
+
     integrations: [mdx({
         processor: unified({
             remarkPlugins: [remarkHeadingId]

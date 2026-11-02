@@ -1,0 +1,21 @@
+---
+import AliceNote from "@assets/cutouts/Post1Ball.webp";
+import { Image } from "astro:assets";
+---
+
+<div>
+    <Image src={AliceNote} loading="eager" alt="Ball note" width="190" />
+</div>
+
+<style>
+    div {
+        width: auto;
+        position: relative;
+    }
+
+    img {
+        position: absolute;
+        left: calc(50% - 440px);
+        rotate: 5deg;
+    }
+</style>

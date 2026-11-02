@@ -1,0 +1,21 @@
+---
+import TheodoreNote from "@assets/cutouts/Post2Ball.webp";
+import { Image } from "astro:assets";
+---
+
+<div>
+    <Image src={TheodoreNote} loading="eager" alt="Ball note" width="190" />
+</div>
+
+<style>
+    div {
+        width: auto;
+        position: relative;
+    }
+    img {
+        position: absolute;
+        top: -30px;
+        right: calc(50% - 372px);
+        rotate: -1.5deg;
+    }
+</style>
