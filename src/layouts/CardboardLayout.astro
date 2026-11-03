@@ -75,4 +75,39 @@ const { title } = Astro.props;
         color: #370097;
         text-shadow: 0 0 0 #370097;
     }
+
+    #cardboard .anchor-target {
+        animation: cardboardAnchorTarget 2s ease;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes cardboardAnchorTarget {
+        0% {
+            background-color: #fff94b00;
+        }
+        12.5% {
+            background-color: #fff94b7f;
+        }
+        25% {
+            background-color: #fff94b33;
+        }
+        37.5% {
+            background-color: #fff94b7f;
+        }
+        50% {
+            background-color: #fff94b33;
+        }
+        62.5% {
+            background-color: #fff94b7f;
+        }
+        75% {
+            background-color: #fff94b33;
+        }
+        87.5% {
+            background-color: #fff94b7f;
+        }
+        100% {
+            background-color: #fff94b00;
+        }
+    }
 </style>
