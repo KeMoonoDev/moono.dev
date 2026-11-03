@@ -66,7 +66,7 @@ The tools & technologies I used and how much I used them.
 
 - [**Rust**](#lib-n-lang) (High)
 - [**Macroquad/Miniquad**](#lib-n-lang) (High)
-- [**Windows API / Linux X11 API**](#the-fork) (Moderate)
+- [**Windows API / Linux X11 API**](#forking-macroquad) (Moderate/Low)
 - [**JavaScript**](#web-port) (Moderate/Low)
 - [**GLSL**](#shaders) (Moderate/Low)
 - [**Python**](#round-balls) (Low)
@@ -79,9 +79,9 @@ The tools & technologies I used and how much I used them.
 
 ### Inspiration
 
-My main inspiration was actually from a rhythm game chart, believe it or not! The rhythm game is called **NotITG**,
-which is known for its modcharts with crazy gimmicks. The gimmick that inspired me was from a modchart which moved
-the game window while keeping the arrow positions the same relative to the screen.  
+My main inspiration was actually from a **rhythm game modchart**, believe it or not! The rhythm game is called **NotITG**,
+which is known for its modcharts with crazy gimmicks. The gimmick that inspired me to make this game was from a
+modchart which **moved the game window** while **keeping the arrow positions the same** relative to the screen.  
 
 If you'd like to see the modchart I'm talking about, 
 <a href="https://youtu.be/3MOAFt41Aus" target="_blank" rel="noopener noreferrer">click here!</a>
@@ -92,87 +92,98 @@ The parts that inspired me starts happening 15 seconds into the chart.
 
 ### Game library & programming language \{#lib-n-lang}
 
-This game was written in Rust, and for the game library I used Macroquad, which is also written in Rust.
-Macroquad is a very easy to use game library which has simple functions for rendering stuff, such as rectangles with
-textures, which was most of what I needed for the game.
+This game was written in **Rust**, and for the **game library** I used **Macroquad**, which is also written in Rust.
+Macroquad is a very easy to use game library which has very simple functions for rendering stuff, such as rectangles
+with textures, which was most of what my game needed.
 
-There were things I needed which the game library didn't have
-though, so I ended up having to fork Macroquad to add those features.
+There were things I needed which the game library didn't have though,
+so I ended up having to **fork Macroquad** to add those features.
 
 <br/>
 
 ### The process
 
 I originally didn't have the idea of having a ball bounce around in a box. I simply just wanted to try making something
-which would keep something the same position as I moved the window around, just for fun.
+which would keep something the same position as I moved the window around, just for fun and to see if I could.
 
 I began by rendering a ball/circle in the middle of the window while checking the window position every frame. Every
 time the window position changed, I got the offset and applied it to the ball, and it worked! But I didn't like how
 the ball would go offscreen, so I added simple collision so that the ball wouldn't pass through the edges of the window.
 
-Afterwards, I added gravity so that the ball wouldn't just float around. After that, I made it so the ball could bounce
-so it wouldn't just completely stop when it landed, and then I made it so you could launch the ball by moving the window
-and transferring the windows velocity to the ball. The last big physics feature I added was the ball being able to
-rotate, and the ball's bounces being affected by its current rotation velocity. This made it so you could spin the ball
-really fast, and when it landed it would bounce all over the place.
+Afterwards, I began adding more physics features to the ball. I added gravity so that the ball wouldn't just float around,
+I made it so the ball could bounce so it wouldn't just completely stop when it landed, and then I made it so you could
+launch the ball by moving the window and transferring the windows velocity to the ball.
 
-Afterwards, it was mostly polishing and making it feel better to use, such as slightly smoothing the box movement to make
-it feel better on a trackpad, fixing the physics calculations to work better on higher refresh-rates, and using a better
-method for handling window movement. (See [Game library limitations](#lib-limitations))
+The last big physics feature I added was the ability for the ball to rotate, as well as the ability for the ball's
+bounces being affected by its current rotation velocity. This made it so you could spin the ball really fast, and when
+it landed it would bounce in the direction of the spin.
 
-<br/>
+Afterwards, it was mostly polishing and making it feel better to use, such as fixing the physics calculations to work
+better on higher refresh-rates, and slightly smoothing the box movement to make it feel better, especially on a trackpad.
 
-### Game library limitations \{#lib-limitations}
+#### Window movement problem
 
-I had a problem during the early stages of the game relating to moving the window around. The problem was that
-moving the window around using the title bar wasn't very consistent. The window movement would be stuttering,
-the ball movement was delayed and inconsistently off sync with the window position, and it would sometimes not
+I had a problem during the early stages of the game relating to moving the window around. The problem was that moving
+the window around using the title bar wasn't very consistent. The window movement would sometimes be stuttering,
+the ball movement was inconsistently delayed and off sync with the window position, and it would sometimes not
 detect the movement at all until I let go of the title bar.
 
-I tried solving it by moving the window myself, and not rely on the title bar. The user would instead move the window
-by clicking anywhere on the window and dragging the cursor.
+To solve this, I decided I would have to move the window myself, and not rely on the title bar.
+The user would instead move the window by clicking anywhere on the window and then dragging it.
 
 My first attempt was to detect cursor movement, and then move the window based on that. But the problem with this
 was that Macroquad only gave me the cursor position relative to the window. And when I moved the window, the cursor
-position wouldn't update until I moved it again, so the window ended up constantly moving in the last direction I
-moved the cursor.
+position wouldn't update until I moved it again. This resulted in the window having the wrong cursor position and ended
+up constantly moving in the last direction I moved the cursor.
 
 My second attempt was to calculate the screen position of the cursor by using the local position and the window position,
-and then compensating the mouse position with the window movement amount until the mouse moves again. This worked better,
-but now the problem was that if the cursor moves quick enough to escape the window, it would no longer track the cursor
-movement. It was also acting very weird on Linux, while the Windows version worked fine, even when I ran it under Wine
-on Linux.
+and when the window was moved, I would compensate the cursor position with the window movement amount until the cursor
+moved again. This worked better, but now the problem was that if the cursor moves quick enough to escape the window,
+it would no longer track the cursor movement. It was also acting very weird on Linux, while the Windows version worked
+fine, even when I ran it under Wine on Linux.
 
-I then decided it would be best to get the actual screen mouse position rather than trying to calculate it.
-To do this, I would need to fork the game library. 
+I then decided it would be best to get the actual screen cursor position rather than trying to calculate it.
+Since Macroquad didn't have a way to get the actual screen cursor position, I would need to fork the game library. 
 
-#### The fork \{#the-fork}
+<br/>
 
-I decided to fork Macroquad to add a function to be able to get the mouse position in screen coordinates.
-I also had to fork Miniquad, since that's what Macroquad uses to handle the input and rendering.
+### Forking Macroquad \{#forking-macroquad}
 
-Since I wanted to support both Windows and Linux, I had to figure out how to use the Windows API and the Linux X11 API.
-For Linux X11, I used the [XQueryPointer](https://tronche.com/gui/x/xlib/window-information/XQueryPointer.html)
-function to get the cursor position,
-and for Windows I used [GetCursorPos](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos).
-The implementation for this in my Mini/Macroquad fork was a bit ugly. I had to ask the OS for the cursor position every
-frame and save the results in a variable rather than asking for the cursor position on demand.
+I decided to **fork Macroquad** to add a function to be able to get the **screen cursor position**.
+I also had to **fork Miniquad**, since that's what Macroquad uses to handle the input, as well as rendering.
 
-The reason for this was because of how Miniquad was structured. There is no easy way for Miniquad to return data
-from the OS to the user. Miniquad simply just listens for events (resize, window position, etc.) and saves the data
+Since I wanted to support both Windows and Linux, I had to figure out how to use the **Windows API**
+and the **Linux X11 API**.
+
+For Linux X11, I used the [**XQueryPointer**](https://tronche.com/gui/x/xlib/window-information/XQueryPointer.html)
+function to get the cursor position. Miniquad already had other functions available from **libX11**, so all I had to do
+was to create the function definition, and then get the function from libX11.
+
+For Windows I used the [**GetCursorPos**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos)
+function to get the cursor position. This was easy to do as Miniquad uses the winapi crate for Windows, which already had
+the function available.
+
+The implementation for this in my Mini/Macroquad fork was a bit ugly. What I did was I asked the OS for the cursor
+position every frame and saved the results in a variable, rather than asking the OS for the cursor position whenever
+the game asks for it.
+
+The reason for this was because of how Miniquad is structured. There was no easy way to make Miniquad directly return
+data from the OS to the user. Miniquad simply just listens for events (resize, window position, etc.) and saves the data
 in variables, which then gets returned to the user when they ask for it.
 
-After I had added a way to get the screen cursor position, moving the box had no more issues! Since I the new window
-movement system was way better, I wanted to remove the old system of moving the box with the title bar.
-But now, if people moved the window with the title bar, the ball inside would follow. So I decided to add borderless
-windows to the game library so that I could force the user to move it the intended way.
+After I had added a way to get the screen cursor position, moving the box had no more issues! Since the new window
+movement system was way better, I wanted to remove the old system of moving the box with the title bar. But now,
+if people moved the window with the title bar, the ball inside wouldn't be affected.
 
-This wasn't already present in Miniquad, so I had to add it myself. For Windows, I simply changed the window style
-and swapped out **WS_CAPTION** with **WS_POPUP** if it was supposed to be borderless.
+To fix this, I decided to add **borderless windows** to the game library so that I could force the user to move it the
+intended way. This wasn't already present in Miniquad, so I had to add it myself.
 
-Adding borderless windows on Linux X11 was a little bit harder for me to figure out. I had to use
-[XChangeProperty](https://tronche.com/gui/x/xlib/window-information/XChangeProperty.html)
-and give it a **MotifWmHints** with decorations set to 0 if borderless, and 1 otherwise.
+For **Windows**, I simply changed the window style and swapped out **WS_CAPTION** with **WS_POPUP** if it was supposed
+to be borderless.
+
+Adding borderless windows on **Linux X11** was a little bit harder for me to figure out. I had to use
+[**XChangeProperty**](https://tronche.com/gui/x/xlib/window-information/XChangeProperty.html)
+and give it a **MotifWmHints** with decorations set to 0 if it was supposed to be borderless, and 1 otherwise.
 
 <br/>
 
@@ -184,9 +195,13 @@ The game uses a total of 2 custom materials. One for the ball, and one for the s
 
 For the ball, to make it fit in more with the environment, I used
 [this guide](https://learnopengl.com/Lighting/Basic-Lighting)
-to add some realistic lighting to the ball. Since the ball is actually just a 2D square with a texture, there wasn't
+to add some basic lighting to the ball. Since the ball is actually just a 2D square with a texture, there wasn't
 really any depth to the ball. To fix this, I calculated the ball's normals in the fragment shader by calculating the
 fragments Z position given the fragments X and Y position, and then simply using the resulting vector as the normal.
+
+That guide didn't cover ambient occlusion. But even if it did, I don't think it would work for this game as everything
+is actually 2D. Instead, I copied the math for the specular light and made it darken the top, bottom, left, and right
+sides of the ball depending on how close it is to a wall. 
 
 For the shadow, I simply made a fragment shader to draw a circle with varying transparency and size depending on
 the balls distance from where the shadow is being cast. There was no guide, and I simply just played around with it
@@ -206,7 +221,7 @@ The balls were drawn by me in **Krita**. The design for the balls were inspired 
 in some Roblox games.
 
 <details>
-<summary>See inspiration for the balls</summary>
+<summary>**See inspiration for the balls**</summary>
 <BallsInspiration/>
 </details>
 
@@ -214,21 +229,22 @@ in some Roblox games.
 
 Once I was done with the ball textures and loaded them into the game, they looked a bit flat, despite the ball material
 adding round shading to the ball. When I looked back at the placeholder ball textures I had, I noticed how things were
-getting more distorted around the edges. It's kinda obvious that'd be the case, but I didn't about that while making the
-textures.
+getting more distorted around the edges. It's kinda obvious that'd be the case, but I didn't think about that while
+making the textures.
 
 To fix this, I wrote a simple **Python** script which would distort the texture in a way that would make the
-textures appear more round.
+textures appear more round, and that solved my problem.
 
 <details>
-<summary>See demo of the Python script</summary>
+<summary>**See Python script demo**</summary>
 <SphereifyDemonstration/>
 </details>
 
 #### Audio \{#audio}
 
-To make the sounds, had recorded me tapping a cardboard box with my finger. Afterwards, I processed the audio with
-Audacity, primarily to remove the background noise.
+There's not much to say about how I made the sounds. I simply recorded me tapping a cardboard box with my finger.
+Afterwards, I processed the audio with **Audacity**, primarily to remove the background noise and to cut it up into
+several audio clips.
 
 <br/>
 
@@ -237,7 +253,7 @@ Audacity, primarily to remove the background noise.
 When I started working on my website, something I wanted to add from the beginning was a web version of Ball in a Box.
 The idea for the implementation was simple. Simply pretend the canvas is a window, and then move the canvas around.
 
-A problem I had was that Macroquad didn't have **set_window_size** and **set_window_position** implemented for wasm builds,
+A problem I had was that Macroquad didn't have **set_window_size** and **set_window_position** implemented for web builds,
 so I had to add those. Implementing **set_window_size** was simple, as I just had to update **canvas.style.width** and
 **canvas.style.height** on the **JavaScript** side, as well as updating the resolution of the canvas.
 
@@ -246,9 +262,9 @@ have it work unless the canvas had a position of **absolute** or **fixed**. Addi
 would probably want to position a canvas wrapper instead of the canvas itself. 
 
 Instead of fully implementing **set_window_position**, I made it so Macroquad would run a user supplied JavaScript
-function for positioning the canvas (or the canvas wrapper) however it needs to be positioned.
+function for positioning the canvas (or the canvas wrapper) to fit the users specific need.
 
-The only feature from my fork that needed to be added to wasm was the ability to get the mouse position relative to the
-screen. To do that, I added a listener to the **"mousemove"** event, and stored the values of **event.clientX** and
+The only feature from my fork that needed to be added to wasm was the ability to get the cursor position relative to the
+screen. To do that, I added a **"mousemove"** event listener to the document, and stored the values of **event.clientX** and
 **event.clientY** on the JavaScript side. Afterwards, I simply just return those values whenever the game asks for the
-screen mouse position.
+screen cursor position.
