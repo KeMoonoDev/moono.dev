@@ -11,11 +11,13 @@ import AliceNote from "@components/ball_in_a_box/AliceNote.astro"
 import TheodoreNote from "@components/ball_in_a_box/TheodoreNote.astro"
 import CherryNote from "@components/ball_in_a_box/CherryNote.astro"
 
-import BallsInspiration from "@components/ball_in_a_box/BallsInspiration.astro"
 import SphereifyDemonstration from "@components/ball_in_a_box/SphereifyDemonstration.astro"
 
 import StartBallInABox from "@components/ball_in_a_box/StartBallInABox.astro"
 import StopBallInABox from "@components/ball_in_a_box/StopBallInABox.astro"
+import GalleryButton from "@components/ball_in_a_box/GalleryButton.astro"
+
+import NavItemCardboard from "@components/navigation/NavItemCardboard.astro";
 
 # Ball in a Box
 
@@ -23,7 +25,8 @@ import StopBallInABox from "@components/ball_in_a_box/StopBallInABox.astro"
 Read more about the games features on its **itch.io** page!</p>
 
 
-<AliceNote/>
+
+<CherryNote/>
 
 <Center>
     <StartBallInABox/>
@@ -32,8 +35,7 @@ Read more about the games features on its **itch.io** page!</p>
 
 <br/>
 
-<TheodoreNote/>
-<CherryNote/>
+<AliceNote/>
 
 <Center>
     <CozyAvailableItchIo
@@ -51,6 +53,12 @@ Read more about the games features on its **itch.io** page!</p>
 
 <br/>
 
+<TheodoreNote/>
+
+<Center>
+<GalleryButton/>
+</Center>
+
 ## Credits
 
 - The game library used for this game is **my own fork** of [Macroquad](https://macroquad.rs) which adds certain features needed for Ball in a Box to work.
@@ -64,14 +72,14 @@ Read more about the games features on its **itch.io** page!</p>
 
 The tools & technologies I used and how much I used them.
 
-- [**Rust**](#lib-n-lang) (High)
-- [**Macroquad/Miniquad**](#lib-n-lang) (High)
-- [**Windows API / Linux X11 API**](#forking-macroquad) (Moderate/Low)
-- [**JavaScript**](#web-port) (Moderate/Low)
-- [**GLSL**](#shaders) (Moderate/Low)
-- [**Python**](#round-balls) (Low)
-- [**Krita**](#textures) (High/Moderate)
-- [**Audacity**](#audio) (Low)
+- [Rust](#lib-n-lang) (High)
+- [Macroquad/Miniquad](#lib-n-lang) (High)
+- [Windows API / Linux X11 API](#forking-macroquad) (Moderate/Low)
+- [JavaScript](#web-port) (Moderate/Low)
+- [GLSL](#shaders) (Moderate/Low)
+- [Python](#round-balls) (Low)
+- [Krita](#textures) (High/Moderate)
+- [Audacity](#audio) (Low)
 
 <br/>
 
@@ -85,7 +93,7 @@ modchart which **moved the game window** while **keeping the arrow positions the
 
 If you'd like to see the modchart I'm talking about, 
 <a href="https://youtu.be/3MOAFt41Aus" target="_blank" rel="noopener noreferrer">click here!</a>
-<span style="color: #4C0000;">**(HAS FLASHING LIGHTS)**</span>
+<span class="warning">**(HAS FLASHING LIGHTS)**</span>
 The parts that inspired me starts happening 15 seconds into the chart.
 
 <br/>
@@ -217,13 +225,11 @@ All cardboard assets in the final game was made by me. I simply took a picture o
 the best I could. The cardboard I took pictures of came from different products, so most of the work was done in **Krita**
 trying to make the colors of the cardboard match.
 
-The balls were drawn by me in **Krita**. The design for the balls were inspired by a few meme balls commonly seen 
-in some Roblox games.
+The balls were drawn by me in **Krita**. The final design for the green and red balls were inspired by some meme balls
+sometimes seen in some Roblox games. The similarities are pretty obvious when you compare them side by side.
+The blue ball design was inspired by the face of the squid plushes that you can turn inside out.
 
-<details>
-<summary>**See inspiration for the balls**</summary>
-<BallsInspiration/>
-</details>
+If you'd like to know more about the cardboard or the balls textures and their inspirations, make sure to check out [the gallery!](ball_in_a_box/gallery)
 
 #### Round balls \{#round-balls}
 

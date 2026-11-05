@@ -1,6 +1,6 @@
 ---
 const tempPath = Astro.url.pathname;
-const { href } = Astro.props;
+const { href, height = "80px" } = Astro.props;
 // In dev builds, there are no trailing slashes, but in prod builds, there are.
 // Fixes this by removing all trailing slashes, unless the path is just the slash.
 const modifiedPath = tempPath == "/" ? "/" : tempPath.replace(/\/+$/, "");
@@ -18,7 +18,7 @@ import { Image } from "astro:assets";
     </div>
 </a>
 
-<style>
+<style define:vars={{ height: `${height}` }}>
     a.disabled {
         color: green;
         pointer-events: none;
@@ -28,7 +28,7 @@ import { Image } from "astro:assets";
     a {
         container-type: size;
         display: inline-block;
-        height: min(80px, calc(33vw - 21px) / 1.875);
+        height: min(var(--height), calc(33vw - 21px) / 1.875);
         max-width: calc(33vw - 21px);
         aspect-ratio: 1.875;
         margin: 5px;
@@ -36,6 +36,7 @@ import { Image } from "astro:assets";
         margin-bottom: 0px;
         position: relative;
         text-align: center;
+        letter-spacing: 0px;
         color: white;
     }
 

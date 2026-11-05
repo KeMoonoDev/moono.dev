@@ -1,0 +1,325 @@
+---
+import ContentCardEmpty from "@components/cards/ContentCardEmpty.astro";
+import CardboardForeground from "@assets/cardboard/foreground.webp";
+import CardboardBackground from "@assets/cardboard/background.webp";
+import PaperBackground from "@assets/cardboard/SquarePaperTiling.webp";
+
+import CardboardLayout from "@layouts/CardboardLayout.astro";
+import Center from "@components/Center.astro";
+import { Image } from "astro:assets";
+
+import Box from "@assets/gallery/box.webp";
+import MenuBackground from "@assets/gallery/menu_background.webp";
+import Button from "@assets/gallery/button.webp";
+import Slider from "@assets/gallery/slider.webp";
+import Side from "@assets/gallery/side.webp";
+import Balls from "@assets/gallery/balls.png";
+import WebBackground from "@assets/gallery/web_background.webp";
+import Paper from "@assets/gallery/paper.webp";
+import TutorialButtons from "@assets/gallery/tutorial_buttons.webp";
+import Loading from "@assets/gallery/loading.webp";
+
+import BallsInspiration from "@assets/gallery/BallsInspiration.webp";
+import EarlyBlue from "@assets/gallery/early_blue.png";
+---
+
+<CardboardLayout>
+    <ContentCardEmpty>
+        <Center>
+            <div class="container">
+                <Image src={Box} alt="" loading="eager" />
+                <div class="paper">
+                    <p>
+                        This is the box that is used as the games background. I
+                        actually folded up that box myself, since I didn't have
+                        a good square box laying around at the time.
+                    </p>
+                    <p>
+                        Usually when I took photos for the game, I simply put
+                        them on the floor. But for this one I had to hold it,
+                        because I wanted the light source to come from the top
+                        left. Putting it on the floor would make it have way
+                        softer shadows and not turn out the way I wanted it to.
+                    </p>
+                    <p>
+                        Because I had to hold it, it became tricky to take a
+                        good picture. The box ended up not entirely facing the
+                        camera, so I ended up fixing it afterwards in Krita.
+                    </p>
+                    <p>
+                        Afterwards, I adjusted the colors to make it look nicer,
+                        and also adjusted some smaller details. For example, I
+                        straightened the slit in the middle, and also removed
+                        the hole in the middle, since I thought it looked nicer.
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={Side} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        This is what's used as a border around the cardboard
+                        box. I used all of my 4 Minecraft books to straighten
+                        out the cardboard as much as possible when taking a
+                        picture. Afterwards, I simply adjusted the colors to
+                        fit, and cleaned it up a bit, as there were a lot of
+                        small bits of cardboard sticking out.
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={MenuBackground} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>This is the background used for the menu.</p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={Button} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>This is the button used inside the menu.</p>
+
+                    <p>
+                        In the game, the buttons are actually a bit stretched
+                        since the text inside wouldn't fit otherwise. Luckily,
+                        it's not too noticeable if you don't think about it.
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={Slider} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        This is the slider background and slider handle used
+                        inside the settings menu.
+                    </p>
+                    <p>
+                        The slider background is a bit transparent around the
+                        edges to try to have it blend in to the menu background.
+                        The goal was to have it look like the front part of the
+                        cardboard got cut off to expose the internal wavy
+                        cardboard.
+                    </p>
+                    <p>
+                        The slider background also got trimmed quite a bit to
+                        try to make it thinner and longer so I wouldn't have to
+                        stretch it. I ended up having to stretch it in-game
+                        anyways.
+                    </p>
+                    <p>
+                        The slider handle is a small piece of white colored
+                        cardboard. I'm not too proud of the final result, but it
+                        works.
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={Balls} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        These are the different textures for each of the
+                        different balls in the game.
+                    </p>
+                    <details>
+                        <summary>
+                            <strong>See inspiration for the balls</strong>
+                        </summary>
+                        I unfortunately couldn't find the exact or very similar pumpkins
+                        that inspired the first few designs.
+                        <br />
+                        <Image
+                            src={BallsInspiration}
+                            alt="Inspiration for ball design"
+                        />
+                    </details>
+                    <p>
+                        The first balls I worked on was the blue and green ball.
+                        They were originally inspired by the "goofy ahh pumpkin"
+                        memes that were popular at the time. The green ball was
+                        also inspired by the green meme ball sometimes seen in
+                        some Roblox games.
+                    </p>
+                    <details>
+                        <summary>
+                            <strong>See early blue ball design</strong>
+                        </summary>
+                        The reason this wasn't showcased in the above image was because
+                        I couldn't find its image. Only a screenshot of it in-game.
+                        <br />
+                        <Image
+                            src={EarlyBlue}
+                            alt="Early design for blue ball"
+                        />
+                    </details>
+                    <p>
+                        The problem was that I wasn't really good at drawing
+                        those types of faces. After some time, they ended up
+                        looking too similar to the original inspiration images I
+                        had, so I ended up rethinking the design.
+                    </p>
+                    <p>
+                        I tried taking inspiration from my squid plush I had
+                        nearby. I ended up making a smiling blue ball, and a
+                        frowning orange ball. Unfortunately they were too
+                        similar to my inspiration again.
+                    </p>
+                    <p>
+                        I decided to go back to the green ball and try to make
+                        something original, still with the inspiration of the
+                        green meme ball. I quite liked the results, as it wasn't
+                        too similar to my inspiration this time.
+                    </p>
+                    <p>
+                        After that, I decided to go back to the blue ball and
+                        try to redesign the face, but with the style from the
+                        green ball. It was successful once again! Lastly, I
+                        decided to redo the orange ball (which had now turned
+                        red) with the inspiration of the red meme ball sometimes
+                        seen in some Roblox games.
+                    </p>
+                    <p>
+                        Once that was all done, I decided to go through all the
+                        balls again and cleaning up the lines, and adding some
+                        more detail and adjusting some things. And that's how
+                        the final balls were made!
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={TutorialButtons} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        Since the game was borderless, there wasn't an obvious
+                        way to move the window around or close the game. To fix
+                        this, I made a simple tutorial which would show you that
+                        you could drag the window by simply clicking on it, and
+                        then that you could click the escape key to open a menu.
+                        This would only happen once, and only if the user hadn't
+                        already moved the box or opened the menu after a few
+                        seconds.
+                    </p>
+                    <p>
+                        The web version of Ball in a Box doesn't actually have
+                        the second part of the tutorial. That is because I found
+                        it annoying having to open the menu to make it stop.
+                        There were also obvious ways to close the box this time,
+                        such as clicking the "Close box" button, or just
+                        refreshing the page.
+                    </p>
+                </div>
+            </div>
+            <div class="dark-container">
+                <Image src={WebBackground} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        This is the background of the games itch.io page, as
+                        well as this page!
+                    </p>
+                    <p>
+                        Some extra work had to be done to make it tile nicely
+                        without being too noticeable. I didn't do a very good
+                        job at the time. It's quite easy to see it tile since
+                        the face between one side to another lacks quite a bit
+                        of detail.
+                    </p>
+                    <p>
+                        The reason why there was a lack of detail was because
+                        the lighting was a bit inconsistent. I ended up having
+                        the fade be very large, as well as painting it with a
+                        soft low opacity brush to make it more consistent.
+                    </p>
+                    <p>
+                        On the itch.io page, I didn't really do much to try to
+                        hide it. But on this website, I scaled and moved it so
+                        that the seam would be in the middle, which is where the
+                        content is! So you don't really notice it that much.
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={Paper} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        This background was recently made as I was making my
+                        website. It's used to make text a bit more readable, as
+                        the text was simply just above the cardboard before.
+                    </p>
+                    <p>
+                        This time, I did a way better job with making the tiling
+                        less noticeable. I managed to make the lightness more
+                        consistent across the whole image, so the fade between
+                        the edges is only the size of 1 square.
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <Image src={Loading} alt="" loading="lazy" />
+                <div class="paper">
+                    <p>
+                        When porting the game to the web, I noticed assets were
+                        loading in way slower than on desktop. To fix this, I
+                        created a simple loading screen which would display
+                        while the game was loading.
+                    </p>
+                </div>
+            </div>
+        </Center>
+    </ContentCardEmpty>
+</CardboardLayout>
+
+<style
+    define:vars={{
+        cardboard: `url("${CardboardForeground.src}")`,
+        darkcardboard: `url("${CardboardBackground.src}")`,
+        paper: `url("${PaperBackground.src}")`,
+    }}
+>
+    img {
+        width: max-content;
+        background-color: black;
+        max-width: 100%;
+        border-radius: 12px;
+        object-fit: scale-down;
+        height: min-content;
+        box-shadow: 0 0 12px -4px;
+    }
+
+    .dark-container {
+        background-image: var(--darkcardboard);
+        background-repeat: repeat;
+        background-size: 50vw;
+        border-radius: 24px;
+        padding: 12px;
+        box-shadow: 0 0 18px -6px;
+        margin-bottom: 24px;
+    }
+
+    .container {
+        background-image: var(--cardboard);
+        background-repeat: repeat;
+        background-size: 50vw;
+        border-radius: 24px;
+        padding: 12px;
+        box-shadow: 0 0 18px -6px;
+        margin-bottom: 24px;
+    }
+
+    .paper {
+        background-image: var(--paper);
+        background-repeat: repeat;
+        background-size: 60%;
+        background-position-x: 50%;
+        box-shadow: 0 0 12px -2px;
+        margin: 6px;
+    }
+
+    p {
+        min-width: calc(100% - 20px);
+        width: 0;
+        margin: 0px;
+        padding: 10px;
+    }
+
+    details {
+        padding: 12px;
+    }
+</style>

@@ -19,27 +19,83 @@ const { title } = Astro.props;
     #cardboard > * {
         font-family: "Fredericka the Great", serif;
         letter-spacing: 0.5px;
+        text-shadow:
+            0.5px 0 0 rgb(13, 0, 26, 0.3),
+            -0.5px 0 0 rgb(13, 0, 26, 0.3),
+            0 0.5px 0 rgb(13, 0, 26, 0.3),
+            0 -0.5px 0 rgb(13, 0, 26, 0.3),
+            0.3px 0.3px 0 rgb(13, 0, 26, 0.3),
+            -0.3px 0.3px 0 rgb(13, 0, 26, 0.3),
+            0.3px -0.3px 0 rgb(13, 0, 26, 0.3),
+            -0.3px -0.3px 0 rgb(13, 0, 26, 0.3);
+    }
+
+    strong {
+        letter-spacing: 1.25px;
+    }
+
+    #cardboard .warning > * {
+        text-shadow:
+            0.5px 0 0 rgb(76, 0, 0, 0.3),
+            -0.5px 0 0 rgb(76, 0, 0, 0.3),
+            0 0.5px 0 rgb(76, 0, 0, 0.3),
+            0 -0.5px 0 rgb(76, 0, 0, 0.3),
+            0.3px 0.3px 0 rgb(76, 0, 0, 0.3),
+            -0.3px 0.3px 0 rgb(76, 0, 0, 0.3),
+            0.3px -0.3px 0 rgb(76, 0, 0, 0.3),
+            -0.3px -0.3px 0 rgb(76, 0, 0, 0.3);
+        color: rgb(76, 0, 0);
+    }
+
+    #cardboard a {
+        text-shadow:
+            0.5px 0 0 rgb(55, 0, 151, 0.3),
+            -0.5px 0 0 rgb(55, 0, 151, 0.3),
+            0 0.5px 0 rgb(55, 0, 151, 0.3),
+            0 -0.5px 0 rgb(55, 0, 151, 0.3),
+            0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            0.3px -0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px -0.3px 0 rgb(55, 0, 151, 0.3);
+        color: rgb(35, 0, 116);
+    }
+
+    #cardboard a:hover {
+        text-shadow:
+            0.5px 0 0 rgb(55, 0, 151, 0.3),
+            -0.5px 0 0 rgb(55, 0, 151, 0.3),
+            0 0.5px 0 rgb(55, 0, 151, 0.3),
+            0 -0.5px 0 rgb(55, 0, 151, 0.3),
+            0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            0.3px -0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px -0.3px 0 rgb(55, 0, 151, 0.3);
+        color: rgb(55, 0, 151);
     }
 
     #cardboard h1 {
+        letter-spacing: 1.25px;
         color: rgb(13, 0, 26);
         font-size: 54px;
         text-align: center;
     }
 
     #cardboard h2 {
+        letter-spacing: 1.25px;
         color: rgb(13, 0, 26);
         font-size: 36px;
         text-align: center;
     }
 
     #cardboard h3 {
+        letter-spacing: 1.25px;
         color: rgb(13, 0, 26);
         font-size: 28px;
         text-align: center;
     }
 
     #cardboard h4 {
+        letter-spacing: 1.25px;
         color: rgb(13, 0, 26);
         font-size: 24px;
     }
@@ -47,33 +103,16 @@ const { title } = Astro.props;
     #cardboard ul {
         color: rgb(13, 0, 26);
         font-size: 24px;
-        text-shadow: 0 0 0 #0d001a;
     }
 
     #cardboard p {
         color: rgb(13, 0, 26);
         font-size: 24px;
-        text-shadow: 0 0 0 #0d001a;
     }
 
     #cardboard summary {
         color: rgb(13, 0, 26);
         font-size: 20px;
-        text-shadow: 0 0 0 #0d001a;
-    }
-
-    #cardboard strong {
-        text-shadow: 0 0 0 #0000;
-    }
-
-    #cardboard a {
-        color: #230074;
-        text-shadow: 0 0 0 #230074;
-    }
-
-    #cardboard a:hover {
-        color: #370097;
-        text-shadow: 0 0 0 #370097;
     }
 
     #cardboard .anchor-target {
