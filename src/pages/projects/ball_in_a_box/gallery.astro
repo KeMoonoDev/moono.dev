@@ -2,10 +2,10 @@
 import ContentCardEmpty from "@components/cards/ContentCardEmpty.astro";
 import CardboardForeground from "@assets/cardboard/foreground.webp";
 import CardboardBackground from "@assets/cardboard/background.webp";
-import PaperBackground from "@assets/cardboard/SquarePaperTiling.webp";
 
 import CardboardLayout from "@layouts/CardboardLayout.astro";
 import Center from "@components/Center.astro";
+import PaperBackground from "@components/ball_in_a_box/PaperBackground.astro";
 import { Image } from "astro:assets";
 
 import Box from "@assets/gallery/box.webp";
@@ -28,7 +28,7 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
         <Center>
             <div class="container">
                 <Image src={Box} alt="" loading="eager" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         This is the box that is used as the games background. I
                         actually folded up that box myself, since I didn't have
@@ -52,11 +52,11 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         straightened the slit in the middle, and also removed
                         the hole in the middle, since I thought it looked nicer.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={Side} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         This is what's used as a border around the cardboard
                         box. I used all of my 4 Minecraft books to straighten
@@ -65,17 +65,17 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         fit, and cleaned it up a bit, as there were a lot of
                         small bits of cardboard sticking out.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={MenuBackground} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>This is the background used for the menu.</p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={Button} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>This is the button used inside the menu.</p>
 
                     <p>
@@ -83,11 +83,11 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         since the text inside wouldn't fit otherwise. Luckily,
                         it's not too noticeable if you don't think about it.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={Slider} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         This is the slider background and the slider handle used
                         inside the settings menu.
@@ -110,11 +110,11 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         cardboard. I'm not too proud of the final result, but it
                         works.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={Balls} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         These are the different textures for each of the
                         different balls in the game.
@@ -182,11 +182,11 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         detail and adjusting some things. And that's how the
                         final balls were made!
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={TutorialButtons} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         Since the game was borderless, there wasn't an obvious
                         way to move the window around or to close the game. To
@@ -205,11 +205,11 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         such as clicking the "Close box" button, or just
                         refreshing the page.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="dark-container">
                 <Image src={WebBackground} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         This is the background of the games itch.io page, as
                         well as this page!
@@ -233,11 +233,11 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         that the seam would be in the middle, which is where the
                         content is! So you don't really notice it that much.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={Paper} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         This background was recently made as I was making my
                         website. It's used to make text a bit more readable, as
@@ -249,18 +249,18 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
                         consistent across the whole image, so the fade between
                         the edges is only the size of 1 square.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
             <div class="container">
                 <Image src={Loading} alt="" loading="lazy" />
-                <div class="paper">
+                <PaperBackground>
                     <p>
                         When porting the game to the web, I noticed assets were
                         loading in way slower than on desktop. To fix this, I
                         created a simple loading screen which would display
                         while the game was loading.
                     </p>
-                </div>
+                </PaperBackground>
             </div>
         </Center>
     </ContentCardEmpty>
@@ -270,7 +270,6 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
     define:vars={{
         cardboard: `url("${CardboardForeground.src}")`,
         darkcardboard: `url("${CardboardBackground.src}")`,
-        paper: `url("${PaperBackground.src}")`,
     }}
 >
     img {
@@ -281,45 +280,42 @@ import EarlyBlue from "@assets/gallery/early_blue.png";
         object-fit: scale-down;
         height: min-content;
         box-shadow: 0 0 12px -4px;
+
+        @media (max-width: 600px) {
+        }
     }
 
     .dark-container {
         background-image: var(--darkcardboard);
         background-repeat: repeat;
-        background-size: 50vw;
-        border-radius: 24px;
+        background-size: 125%;
         padding: 12px;
+        border-radius: 24px;
+        background-color: white;
         box-shadow: 0 0 18px -6px;
         margin-bottom: 24px;
+
+        @media (max-width: 600px) {
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+        }
     }
 
     .container {
         background-image: var(--cardboard);
         background-repeat: repeat;
-        background-size: 50vw;
-        border-radius: 24px;
+        background-size: 125%;
         padding: 12px;
+        border-radius: 24px;
+        background-color: white;
         box-shadow: 0 0 18px -6px;
         margin-bottom: 24px;
-    }
 
-    .paper {
-        background-image: var(--paper);
-        background-repeat: repeat;
-        background-size: 60%;
-        background-position-x: 50%;
-        box-shadow: 0 0 12px -2px;
-        margin: 6px;
-    }
-
-    p {
-        min-width: calc(100% - 20px);
-        width: 0;
-        margin: 0px;
-        padding: 10px;
-    }
-
-    details {
-        padding: 12px;
+        @media (max-width: 600px) {
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+        }
     }
 </style>

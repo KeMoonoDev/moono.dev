@@ -74,6 +74,10 @@ const { title } = Astro.props;
     }
 
     #cardboard h1 {
+        /* evil trickery to make the paper background look good*/
+        padding-top: 42px;
+        margin-top: 10px;
+
         letter-spacing: 1.25px;
         color: rgb(13, 0, 26);
         font-size: 54px;
@@ -106,6 +110,11 @@ const { title } = Astro.props;
     }
 
     #cardboard p {
+        min-width: 100%;
+        width: 0;
+        margin: 0px;
+        padding-top: 12px;
+        padding-bottom: 12px;
         color: rgb(13, 0, 26);
         font-size: 24px;
     }

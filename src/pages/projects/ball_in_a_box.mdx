@@ -3,6 +3,7 @@ layout: "@layouts/CardboardCardLayout.astro"
 title: Ball in a Box
 ---
 import Center from "@components/Center.astro"
+import PaperBackground from "@components/ball_in_a_box/PaperBackground.astro";
 
 import Cozy from "@components/badges/devins/Cozy.astro"
 import CozyAvailableItchIo from "@components/badges/itch/CozyAvailableItchIo.astro"
@@ -19,6 +20,7 @@ import GalleryButton from "@components/ball_in_a_box/GalleryButton.astro"
 
 import NavItemCardboard from "@components/navigation/NavItemCardboard.astro";
 
+<PaperBackground>
 # Ball in a Box
 
 <p style="text-align:center; margin-bottom: 22px">Ball in a Box is a **desktop toy** where you have a ball in a box that you can interact with by **moving the box around**.
@@ -274,3 +276,4 @@ The only feature from my fork that needed to be added to wasm was the ability to
 screen. To do that, I added a **"mousemove"** event listener to the document, and stored the values of **event.clientX** and
 **event.clientY** on the JavaScript side. Afterwards, I simply just return those values whenever the game asks for the
 screen cursor position.
+</PaperBackground>

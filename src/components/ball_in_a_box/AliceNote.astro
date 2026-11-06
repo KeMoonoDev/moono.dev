@@ -18,5 +18,18 @@ import { Image } from "astro:assets";
         top: -30px;
         left: calc(50% - 440px);
         rotate: 5deg;
+
+        @media (max-width: 910px) {
+            left: calc(50% - 370px);
+        }
+
+        @media (max-width: 765px) {
+            top: 55px;
+            left: calc(50% - 300px);
+        }
+
+        @media (max-width: 625px) {
+            display: none;
+        }
     }
 </style>

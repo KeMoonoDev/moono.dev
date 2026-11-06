@@ -1,0 +1,24 @@
+---
+import PaperBackground from "@assets/cardboard/SquarePaperTiling.webp";
+---
+
+<div>
+    <slot />
+</div>
+
+<style
+    define:vars={{
+        paper: `url("${PaperBackground.src}")`,
+    }}
+>
+    div {
+        background-image: var(--paper);
+        background-repeat: repeat;
+        background-size: 60%;
+        background-position-x: 50%;
+        box-shadow: 0 0 12px -2px;
+        margin: 6px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+</style>
