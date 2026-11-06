@@ -46,11 +46,20 @@ import Background from "../Background.astro";
     }
 
     let requestNumber: number | null = null;
+    let wasReduced = false;
 
     function animate() {
         if (camera && renderer && scene) {
             requestNumber = requestAnimationFrame(animate);
-            let nowSecs = performance.now() / 1000;
+
+            let isReduced = window.matchMedia(
+                `(prefers-reduced-motion: reduce)`,
+            ).matches;
+            let skipRender = wasReduced && isReduced;
+            wasReduced = isReduced;
+            if (skipRender) return;
+
+            let nowSecs = isReduced ? 0 : performance.now() / 1000;
             let revolutions = nowSecs / 250;
             let strength = 0.125;
             camera.rotation.x =
@@ -70,6 +79,7 @@ import Background from "../Background.astro";
         renderer = null;
         scene = null;
         camera = null;
+        wasReduced = false;
     }
 
     function setup(canvas: any) {

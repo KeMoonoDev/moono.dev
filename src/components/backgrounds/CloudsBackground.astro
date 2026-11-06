@@ -92,14 +92,20 @@ import Background from "../Background.astro";
             lastScrollAmount = scrollAmount;
         }
 
-        if (layer1)
-            layer1.style.backgroundPositionX = `-${(now / 30) * window.innerWidth}px`;
+        let isReduced = window.matchMedia(
+            `(prefers-reduced-motion: reduce)`,
+        ).matches;
 
-        if (layer2)
-            layer2.style.backgroundPositionX = `-${(now / 60) * window.innerWidth}px`;
+        if (!isReduced) {
+            if (layer1)
+                layer1.style.backgroundPositionX = `-${(now / 30) * window.innerWidth}px`;
 
-        if (layer3)
-            layer3.style.backgroundPositionX = `-${(now / 120) * window.innerWidth}px`;
+            if (layer2)
+                layer2.style.backgroundPositionX = `-${(now / 60) * window.innerWidth}px`;
+
+            if (layer3)
+                layer3.style.backgroundPositionX = `-${(now / 120) * window.innerWidth}px`;
+        }
         requestAnimationFrame(updateParallax);
     }
 
