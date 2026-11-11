@@ -7,27 +7,28 @@ const modifiedPath = tempPath == "/" ? "/" : tempPath.replace(/\/+$/, "");
 const modifiedHref = href == "/" ? "/" : href.replace(/\/+$/, "");
 const isMatch = modifiedPath == modifiedHref;
 
-import cloud from "@assets/buttons/cloud_button.webp";
+import CloudRect from "@assets/clouds/cloud_rect.png";
 ---
 
 <a href={href} class=`${ isMatch ? "disabled" : "" }`>
-    <img src={cloud.src} class="back" />
-    <img src={cloud.src} class="left" />
-    <img src={cloud.src} class="right" />
-    <img src={cloud.src} class="front" />
+    <div class="button-background"></div>
     <div>
         <slot />
     </div>
 </a>
 
-<style>
+<style
+    define:vars={{
+        background: `url("${CloudRect.src}")`,
+    }}
+>
     a {
         container-type: size;
         display: inline-block;
-        height: min(80px, calc(33vw - 40px) / 1.875);
-        max-width: calc(33vw - 40px);
+        height: min(80px, calc(33vw - 20px) / 1.875);
+        max-width: calc(33vw - 20px);
         aspect-ratio: 1.875;
-        margin: 20px;
+        margin: 10px;
         margin-top: 0px;
         margin-bottom: 0px;
         position: relative;
@@ -39,124 +40,42 @@ import cloud from "@assets/buttons/cloud_button.webp";
     a.disabled {
         pointer-events: none;
         cursor: default;
-        filter: brightness(130%);
     }
 
-    a:hover {
-        filter: brightness(115%);
-    }
-
-    a:active {
-        filter: brightness(115%);
-    }
-
-    img {
-        transition-duration: 0.2s;
-        aspect-ratio: 1.875;
-        position: absolute;
+    .button-background {
+        transition: filter 0.2s;
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 0 10px #0009);
+        border-image: var(--background) 81 fill round;
+        border-image-width: 30px;
+        border-image-outset: 5px;
         filter: opacity(0);
+
+        @media (max-width: 515px) {
+            transition: border-image-width 0s;
+            border-image-width: 6vw;
+        }
     }
 
-    .front {
-        width: 90%;
-        left: 0%;
-        bottom: -10%;
-    }
-
-    .left {
-        width: 70%;
-        left: -7%;
-        bottom: 20%;
-    }
-
-    .right {
-        width: 70%;
-        right: -5%;
-        bottom: 10%;
-    }
-
-    .back {
-        width: 85%;
-        left: 7.5%;
-        bottom: 30%;
-    }
-
-    .disabled > .front {
-        transition-duration: 0.2s;
-        bottom: -16%;
+    a.disabled > .button-background {
+        transition: filter 0.2s;
         filter: opacity(1) drop-shadow(0 0 10px #0009);
     }
 
-    .disabled > .left {
-        transition-duration: 0.2s;
-        left: -17%;
-        filter: opacity(1) drop-shadow(0 0 10px #0009);
+    a:hover > .button-background {
+        transition: filter 0.2s;
+        filter: opacity(0.75) drop-shadow(0 0 10px #0005);
     }
 
-    .disabled > .right {
-        transition-duration: 0.2s;
-        right: -15%;
-        filter: opacity(1) drop-shadow(0 0 10px #0009);
-    }
-
-    .disabled > .back {
-        transition-duration: 0.2s;
-        bottom: 36%;
-        filter: opacity(1) drop-shadow(0 0 10px #0009);
-    }
-
-    a:hover > .front {
-        transition-duration: 0.2s;
-        bottom: -16%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:hover > .left {
-        transition-duration: 0.2s;
-        left: -17%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:hover > .right {
-        transition-duration: 0.2s;
-        right: -15%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:hover > .back {
-        transition-duration: 0.2s;
-        bottom: 36%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:a > .front {
-        transition-duration: 0.2s;
-        bottom: -16%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:a > .left {
-        transition-duration: 0.2s;
-        left: -17%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:a > .right {
-        transition-duration: 0.2s;
-        right: -15%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
-    }
-
-    a:a > .back {
-        transition-duration: 0.2s;
-        bottom: 36%;
-        filter: opacity(0.75) drop-shadow(0 0 5px #0005);
+    a:active > .button-background {
+        transition: filter 0.2s;
+        filter: opacity(0.75) drop-shadow(0 0 10px #0005);
     }
 
     div {
         font-size: 20cqw;
         color: black;
-        filter: drop-shadow(0 0 5px white);
         position: absolute;
         top: 50%;
         left: 50%;
