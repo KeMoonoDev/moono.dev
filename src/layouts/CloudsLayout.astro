@@ -20,11 +20,58 @@ const { title } = Astro.props;
         text-align: center;
     }
 
+    #clouds h2 {
+        text-align: center;
+    }
+
+    #clouds h3 {
+        text-align: center;
+    }
+
     #clouds p {
+        font-size: 18px;
+    }
+
+    #clouds ul {
         font-size: 18px;
     }
 
     #clouds > * {
         font-family: "Lunasima", sans-serif;
+    }
+
+    #clouds .anchor-target {
+        animation: cloudsAnchorTarget 2s ease;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes cloudsAnchorTarget {
+        0% {
+            background-color: #a2b8c900;
+        }
+        12.5% {
+            background-color: #a2b8c9e0;
+        }
+        25% {
+            background-color: #a2b8c970;
+        }
+        37.5% {
+            background-color: #a2b8c9e0;
+        }
+        50% {
+            background-color: #a2b8c970;
+        }
+        62.5% {
+            background-color: #a2b8c9e0;
+        }
+        75% {
+            background-color: #a2b8c970;
+        }
+        87.5% {
+            background-color: #a2b8c9e0;
+        }
+        100% {
+            background-color: #a2b8c900;
+        }
     }
 </style>

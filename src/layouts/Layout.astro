@@ -72,12 +72,25 @@ const { title, id } = Astro.props;
 		}
 	}
 
+	function fixCurrentTarget() {
+		const targetElement = document.querySelector(":target");
+
+		if (targetElement) {
+			if (currentAnchorTarget != null)
+				currentAnchorTarget.classList.remove("anchor-target");
+			targetElement.classList.add("anchor-target");
+			currentAnchorTarget = targetElement;
+		}
+	}
+
 	document.addEventListener("astro:before-swap", (event) => {
-		console.log("whack");
 		hookAllAnchorsWithHashes(event.newDocument);
 	});
 
+	document.addEventListener("astro:after-swap", fixCurrentTarget);
+
 	hookAllAnchorsWithHashes(document);
+	fixCurrentTarget();
 </script>
 
 <style is:global>
