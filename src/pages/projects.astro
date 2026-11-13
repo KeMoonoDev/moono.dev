@@ -1,6 +1,13 @@
 ---
+import CardboardForeground from "@assets/cardboard/foreground.webp";
+import CardboardBackground from "@assets/cardboard/background.webp";
+
+import PaperBackground from "@components/ball_in_a_box/PaperBackground.astro";
+
 import ContentCardEmpty from "@components/cards/ContentCardEmpty.astro";
 import CloudsLayout from "@layouts/CloudsLayout.astro";
+import Tags from "@components/tags/Tags.astro";
+import Tag from "@components/tags/Tag.astro";
 const projects = Object.values(
     import.meta.glob("./projects/*.mdx", { eager: true }),
 );
@@ -10,31 +17,80 @@ console.log(projects);
 <CloudsLayout>
     <ContentCardEmpty>
         <div class="grid">
-            <div class="item">
-                <a class="ball-in-a-box" href="/projects/ball_in_a_box">
+            <div class="item ball-in-a-box">
+                <a href="/projects/ball_in_a_box">
                     <img
-                        class="ball-in-a-box"
                         src="/projects/ball_in_a_box/banner.webp"
                         alt="Ball in a Box"
                     />
                 </a>
+                <div class="description">
+                    <PaperBackground>
+                        <h2>
+                            <a href="/projects/ball_in_a_box">Ball in a Box</a>
+                        </h2>
+                        <p>
+                            <strong>Started: Sep 16 2024</strong>
+                        </p>
+                        <p>
+                            A desktop toy where you have a ball in a box that
+                            you can interact with by moving the box around.
+                        </p>
+                    </PaperBackground>
+                </div>
+                <Tags>
+                    <Tag color="#e6f2a2">Rust</Tag>
+                    <Tag color="#e6f2a2">Miniquad</Tag>
+                    <Tag color="#e6f2a2">Macroquad</Tag>
+                    <Tag color="#e6f2a2">Windows API</Tag>
+                    <Tag color="#e6f2a2">Linux X11 API</Tag>
+                    <Tag color="#e6f2a2">Krita</Tag>
+                </Tags>
             </div>
-            <div class="item">
+            <div class="item unloaded-activity">
                 <a href="/projects/unloaded_activity">
                     <img
-                        class="unloaded-activity"
                         src="/projects/unloaded_activity/banner.webp"
                         alt="Unloaded Activity"
                     />
                 </a>
+                <div class="description">
+                    <h2>
+                        <a href="/projects/unloaded_activity"
+                            >Unloaded Activity
+                        </a>
+                    </h2>
+                    <p>
+                        <strong>Started: Jan 3 2023</strong>
+                    </p>
+                    <p>
+                        A Minecraft Mod which simulates blocks and entities to
+                        catch up after being unloaded for a period of time.
+                    </p>
+                </div>
+                <Tags>
+                    <Tag>Java</Tag>
+                    <Tag>Minecraft modding</Tag>
+                    <Tag>Probability distributions</Tag>
+                </Tags>
             </div>
         </div>
     </ContentCardEmpty>
 </CloudsLayout>
 
-<style>
+<style
+    define:vars={{
+        cardboard: `url("${CardboardForeground.src}")`,
+        darkcardboard: `url("${CardboardBackground.src}")`,
+    }}
+>
+    .description {
+        width: 100%;
+        height: auto;
+    }
+
     a {
-        line-height: 0;
+        height: min-content;
     }
 
     img {
@@ -51,22 +107,93 @@ console.log(projects);
     }
 
     .item {
-        max-width: 320px;
-        min-width: 320px;
-        height: 172px;
-
-        /*
-            background: hsl(340 80% 50%);
-            border: 5px solid hsl(340 80% 70%);
-            border-radius: 1rem;
-            */
+        margin: 0 12px 12px 12px;
+        width: 400px;
+        height: min-content;
 
         display: flex;
-        justify-content: center; /* Horizontally center */
-        align-items: center; /* Vertically center */
+        flex-direction: column;
+        justify-content: top;
+        align-items: center;
     }
 
-    .ball-in-a-box {
+    .ball-in-a-box * {
+        font-family: "Fredericka the Great", serif;
+        letter-spacing: 0.5px;
+        text-shadow:
+            0.5px 0 0 rgb(13, 0, 26, 0.3),
+            -0.5px 0 0 rgb(13, 0, 26, 0.3),
+            0 0.5px 0 rgb(13, 0, 26, 0.3),
+            0 -0.5px 0 rgb(13, 0, 26, 0.3),
+            0.3px 0.3px 0 rgb(13, 0, 26, 0.3),
+            -0.3px 0.3px 0 rgb(13, 0, 26, 0.3),
+            0.3px -0.3px 0 rgb(13, 0, 26, 0.3),
+            -0.3px -0.3px 0 rgb(13, 0, 26, 0.3);
+    }
+
+    .ball-in-a-box a {
+        text-shadow:
+            0.5px 0 0 rgb(55, 0, 151, 0.3),
+            -0.5px 0 0 rgb(55, 0, 151, 0.3),
+            0 0.5px 0 rgb(55, 0, 151, 0.3),
+            0 -0.5px 0 rgb(55, 0, 151, 0.3),
+            0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            0.3px -0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px -0.3px 0 rgb(55, 0, 151, 0.3);
+        color: rgb(35, 0, 116);
+    }
+
+    .ball-in-a-box a:hover {
+        text-shadow:
+            0.5px 0 0 rgb(55, 0, 151, 0.3),
+            -0.5px 0 0 rgb(55, 0, 151, 0.3),
+            0 0.5px 0 rgb(55, 0, 151, 0.3),
+            0 -0.5px 0 rgb(55, 0, 151, 0.3),
+            0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px 0.3px 0 rgb(55, 0, 151, 0.3),
+            0.3px -0.3px 0 rgb(55, 0, 151, 0.3),
+            -0.3px -0.3px 0 rgb(55, 0, 151, 0.3);
+        color: rgb(55, 0, 151);
+    }
+
+    .ball-in-a-box.item {
+        background-image: var(--cardboard);
+        background-repeat: repeat;
+        background-size: 200%;
+        background-position-x: 50%;
+        padding: 12px;
+        border-radius: 24px;
+        background-color: white;
+        box-shadow: 0 0 18px -6px;
+    }
+
+    .ball-in-a-box h2 {
+        padding-top: 12px;
+        color: rgb(13, 0, 26);
+        font-size: 30px;
+        margin: 0;
+    }
+
+    .ball-in-a-box p {
+        min-width: 100%;
+        width: 0;
+        margin: 0px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        color: rgb(13, 0, 26);
+        font-size: 21px !important;
+    }
+
+    .ball-in-a-box strong {
+        letter-spacing: 1.25px;
+    }
+
+    .ball-in-a-box a {
+        border-radius: 25%;
+    }
+
+    .ball-in-a-box img {
         border-radius: 25%;
     }
 
@@ -77,12 +204,48 @@ console.log(projects);
         filter: brightness(80%);
     }
 
-    .unloaded-activity {
+    .unloaded-activity > * {
+        font-family: "Monocraft", serif;
+    }
+
+    .unloaded-activity img {
         filter: drop-shadow(0 0 6 #000a);
         border: 4px solid #000000;
     }
 
-    .unloaded-activity:hover {
+    .unloaded-activity img:hover {
         border: 4px solid #fff;
+    }
+
+    .unloaded-activity.item {
+        padding: 12px;
+        box-shadow: 0 0 18px -6px;
+
+        background-color: rgba(0, 0, 0, 0.75);
+        border: 4px solid rgba(0, 0, 0, 0.75);
+        outline: 4px solid rgb(200, 200, 200, 0.75);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
+
+    .unloaded-activity h2 {
+        font-size: 2em !important;
+        color: white;
+        text-align: center;
+        text-shadow: 0.11em 0.11em 0 #3f3f3f;
+    }
+
+    .unloaded-activity p {
+        font-size: 1.3em !important;
+        color: white;
+        text-shadow: 0.11em 0.11em 0 #3f3f3f;
+    }
+
+    .unloaded-activity a {
+        color: #5599ff;
+    }
+
+    .unloaded-activity a:hover {
+        color: #55bbff;
     }
 </style>

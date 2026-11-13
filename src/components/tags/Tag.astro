@@ -1,0 +1,22 @@
+---
+const { color = "#ffffff" } = Astro.props;
+---
+
+<div>
+    <slot />
+</div>
+
+<style
+    define:vars={{
+        color: `${color}`,
+    }}
+>
+    div {
+        font-weight: bold;
+        margin: 4px;
+        padding: 3px;
+        border-radius: 6px;
+        background-color: var(--color);
+        filter: drop-shadow(0 0 4px);
+    }
+</style>
