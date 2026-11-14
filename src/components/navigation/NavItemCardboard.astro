@@ -11,7 +11,7 @@ import cardboardButton from "@assets/buttons/cardboard_button.webp";
 import { Image } from "astro:assets";
 ---
 
-<a href={href} class=`${ isMatch ? "disabled" : "" }`>
+<a href={href} class=`${isMatch ? "disabled" : ""}`>
     <Image src={cardboardButton} loading="eager" alt="Cardboard button" />
     <div>
         <slot />
