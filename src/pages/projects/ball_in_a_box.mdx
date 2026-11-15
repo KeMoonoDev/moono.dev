@@ -183,8 +183,8 @@ After I had added a way to get the screen cursor position, moving the box had no
 movement system was way better, I wanted to remove the old system of moving the box with the title bar. But now,
 if people moved the window with the title bar, the ball inside wouldn't be affected.
 
-To fix this, I decided to add **borderless windows** to the game library so that I could force the user to move it the
-intended way. This wasn't already present in Miniquad, so I had to add it myself.
+To make the user move it the intended way, I decided to make it a **borderless window** so that I could force the user
+to move it the way I wanted them to. Borderless window wasn't already present in Miniquad, so I had to add it myself.
 
 For **Windows**, I simply changed the window style and swapped out **WS_CAPTION** with **WS_POPUP** if it was supposed
 to be borderless.
@@ -205,7 +205,8 @@ For the ball, to make it fit in more with the environment, I used
 [this guide](https://learnopengl.com/Lighting/Basic-Lighting)
 to add some basic lighting to the ball. Since the ball is actually just a 2D square with a texture, there wasn't
 really any depth to the ball. To fix this, I calculated the ball's normals in the fragment shader by calculating the
-fragments Z position given the fragments X and Y position, and then simply using the resulting vector as the normal.
+normals Z value given the fragments X and Y position. The normal vector could then be created with the fragments X
+and Y values, and the calculated Z value.
 
 That guide didn't cover ambient occlusion. But even if it did, I don't think it would work for this game as everything
 is actually 2D. Instead, I copied the math for the specular light and made it darken the top, bottom, left, and right
