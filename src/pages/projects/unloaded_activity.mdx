@@ -79,32 +79,32 @@ catch up.
 
 ### How to simulate a lot of ticks
 
-Things may have been unloaded for a long time. When it's time for Unloaded Activity to start simulating, it needs to
-simulate thousands, or maybe even millions of ticks! All without lagging the game. How does it do that?
+Things may have been unloaded for a long time. When it's time for Unloaded Activity to start simulating, it may need to
+simulate **thousands**, or maybe even **millions of ticks!** All without lagging the game. How does it do that?
 
-Instead of simulating each individual tick, it runs a quick calculation to get the result of all those ticks.
+Instead of simulating each individual tick, it **directly calculates the result** of all those ticks.
 For things with no randomness, like an ageing entity, this is quite simple to do!
 
-Instead of repeatedly adding 1 to the entities age every tick, you can simply add the tick difference to the entities age.
+Instead of **repeatedly adding 1** to the entities age every tick, you can simply **add the tick difference** to the entities age.
 *Though, in reality its not quite that simple, but it's just to get the idea across.*
 
 For more complicated things like furnaces, the idea still applies. You'll have to keep track of the fuel, ingredients
-and the smelting progress, but it's still the same idea of *"instead of repeatedly adding 1.. ..simply add the tick
-difference"*.
+and the smelting progress, but it's still roughly the same idea of *"instead of repeatedly adding 1..
+..simply add the tick difference"*.
 
 #### Probability distributions
 
 Problems starts arriving once you want to simulate stuff with randomness in their logic. This includes things like crops,
-amethyst growth, and filling cauldrons when raining. If you want to simulate several random ticks accurately without
-having to run each tick, you will need to start using probability distributions.
+amethyst growth, and filling cauldrons during rainfall. If you want to **simulate several random ticks accurately**
+without having to run each tick, you will need to start using **probability distributions**.
 
 #### Binomial distribution
 
-For things like crops, they can be simulated with just a binomial distribution. A binomial distribution basically asks:
-*"If this has probability **P** of growing per tick and we have **N** ticks, what is the probability of it growing
+Things like crops can be simulated using a **binomial distribution**. A binomial distribution basically asks:
+*"If this has a probability of **P** of growing per tick and we have **N** ticks, what is the probability of it growing
 exactly **K** times?"*
 
-With this, it's pretty easy to figure out how much a crop should have grown.
+With this, it's pretty easy to figure out how much a crop should grow.
 All we need is the probability of it growing ***(P)***, and the amount of ticks we need to simulate ***(N)***,
 and then we can sample a random number from the binomial distribution to get the growth amount ***(K)***.
 If the growth amount is larger than the crops max growth, simply clamp the result.
@@ -112,27 +112,30 @@ If the growth amount is larger than the crops max growth, simply clamp the resul
 #### Negative binomial distribution
 
 A binomial distribution only works if the probability stays the same during all growth stages. But what happens if the
-probability changes? For example, if you grow watermelons or pumpkins, once the stem has fully grown, the probability
-of it growing a fruit changes.
+**probability changes?** For example, for watermelons and pumpkins, growing the stem has a different probability compared
+to the probability of growing a fruit once the stem has fully grown.
 
-That's where we can use a negative binomial distribution. A negative binomial distribution basically
-asks: *"If this has probability **P** of growing per tick and we have **R** successful growths, what is the probability
-of it failing to grow exactly **K** times?"*
+That's where we can use a **negative binomial distribution.** A negative binomial distribution basically
+asks: *"If this has a probability of **P** of growing per tick and we have **R** successful growths,
+what is the probability of it failing to grow exactly **K** times?"*
 
 There are a few different ways to simulate stuff with a negative binomial distribution. What Unloaded Activity does is
-it completely replaces the binomial distribution if the probability can change. It then keeps sampling the negative
-binomial distribution with the current probability ***(P)***, and with 1 successful growth **(R=1)**, and then it keeps
-adding up the result ***(K)*** until the sum is larger than the amount of ticks it needs to simulate.
+that it completely replaces the binomial distribution with the negative one if the probability can change.
+It then **keeps sampling the negative binomial distribution** with the current probability ***(P)***,
+and with 1 successful growth **(R=1)**, and then it keeps adding up the result ***(K)*** **until the sum is larger than
+the amount of ticks it needs to simulate.**
+
 The amount of growths would be the amount of times it was able to sample the negative binomial distribution without the
-sum going over the threshold. Doing it this way allows Unloaded Activity to change the probability per growth stage, and
-while having accurate results.
+sum going over the amount of ticks it needs to simulate. Doing it this way allows Unloaded Activity to change the
+probability per growth stage, while having accurate results.
 
 <br/>
 
 ### Simulating with weather and day/night cycle \{#weather-and-day-night}
 
 Certain blocks only do things during specific conditions. For example, tree saplings only try to grow if it has enough
-light *(without torches, that'd only be during day time)*, and cauldrons only gets filled with water when it's raining.
+light *(without torches or other light sources, that'd only be during day time)*, and cauldrons only gets filled with
+water when it's raining.
 
 What Unloaded Activity does is that it will calculate the time it takes before their conditions change, and then simulate
 that time range. Afterwards, it will check the next time their conditions change, and then simulate that time range.
@@ -150,9 +153,10 @@ flexible enough to support many different scenarios for mod support, I had to ch
 
 ### Cons with this approach
 
-All of the blocks or (block-)entities tick functions have to be remade in Unloaded Activitys own way so that it is able
-to simulate several ticks quickly. Unloaded Activity never actually touches the blocks or (block-)entities tick functions.
+All of the blocks or (block-)entities tick functions have to be remade in Unloaded Activitys own way.
+This is so that it's able to simulate several ticks quickly using the methods above. Unloaded Activity never actually
+touches the blocks or (block-)entities tick functions since they were made to simulate 1 tick per call, not several.
 
 As a consequence, mod support has to be explicitly added by me or the mod developer. If a mod developer were to add
-support to Unloaded Activity, they'd have to maintain 2 different tick methods per block or (block-)entity that can
-simulate. 
+support to Unloaded Activity, they'd have to maintain 2 different tick methods per block or (block-)entity that needs
+to be simulated.
