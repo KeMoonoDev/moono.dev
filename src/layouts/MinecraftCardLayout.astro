@@ -5,8 +5,8 @@ let { frontmatter, title } = Astro.props;
 if (frontmatter) title = frontmatter.title;
 ---
 
-<MinecraftLayout title={title} discardMainTransition="true">
-    <ContentCardMinecraft includeMainTransition="true">
+<MinecraftLayout title={title}>
+    <ContentCardMinecraft>
         <slot />
     </ContentCardMinecraft>
 </MinecraftLayout>

@@ -3,14 +3,10 @@ import MinecraftBackground from "@components/backgrounds/MinecraftBackground.ast
 import NavBarMinecraft from "@components/navigation/NavBarMinecraft.astro";
 import Layout from "./Layout.astro";
 import ContentCardMinecraft from "@components/cards/ContentCardMinecraft.astro";
-const { title, discardMainTransition } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<Layout
-    title={title}
-    discardMainTransition={discardMainTransition}
-    id="minecraft"
->
+<Layout title={title} id="minecraft">
     <slot />
     <div slot="background">
         <MinecraftBackground />
@@ -51,18 +47,34 @@ const { title, discardMainTransition } = Astro.props;
     }
 
     #minecraft h2 {
+        font-size: 2.25em;
         color: white;
         text-align: center;
         text-shadow: 0.11em 0.11em 0 #3f3f3f;
     }
 
     #minecraft h3 {
+        font-size: 2em;
         color: white;
         text-align: center;
         text-shadow: 0.11em 0.11em 0 #3f3f3f;
     }
 
+    #minecraft h3 {
+        font-size: 1.75em;
+        color: white;
+        text-align: center;
+        text-shadow: 0.11em 0.11em 0 #3f3f3f;
+    }
+
+    #minecraft h4 {
+        font-size: 1.5em;
+        color: white;
+        text-shadow: 0.11em 0.11em 0 #3f3f3f;
+    }
+
     #minecraft ul {
+        font-size: 1.5em;
         color: white;
         text-shadow: 0.11em 0.11em 0 #3f3f3f;
     }
